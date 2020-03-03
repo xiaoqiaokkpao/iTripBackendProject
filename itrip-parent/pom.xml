@@ -10,24 +10,24 @@
 	<version>1.0.0</version>
 	<packaging>pom</packaging>
 
-	<!-- 配置项目使用Spring Boot Parent作为父级依赖关系[begin] -->
+	<!-- 配置项目使用 Spring Boot Parent 作为父级依赖关系[begin] -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.12.RELEASE</version>
 	</parent>
-	<!-- 配置项目使用Spring Boot Parent作为父级依赖关系[end] -->
+	<!-- 配置项目使用 Spring Boot Parent 作为父级依赖关系[end] -->
 
-	<!-- 配置Spring Boot Web的依赖关系[begin] -->
+	<!-- 配置 Spring Boot Web 的依赖关系[begin] -->
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 	</dependencies>
-	<!-- 配置Spring Boot Web的依赖关系[begin] -->
+	<!-- 配置 Spring Boot Web 的依赖关系[begin] -->
 
-	<!-- 配置Spring Cloud的依赖关系[begin] -->
+	<!-- 配置 Spring Cloud 的依赖关系[begin] -->
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -39,12 +39,12 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	<!-- 配置Spring Cloud的依赖关系[end] -->
+	<!-- 配置 Spring Cloud 的依赖关系[end] -->
 
 	<build>
 		<pluginManagement>
 			<plugins>
-				<!-- 配置spring boot项目maven的打包插件[begin] -->
+				<!-- 配置 spring boot项目maven 的打包插件[begin] -->
 				<plugin>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
@@ -56,7 +56,7 @@
 						</execution>
 					</executions>
 				</plugin>
-				<!-- 配置spring boot项目maven的打包插件[end] -->
+				<!-- 配置 spring boot项目maven 的打包插件[end] -->
 			</plugins>
 		</pluginManagement>
 	</build>
