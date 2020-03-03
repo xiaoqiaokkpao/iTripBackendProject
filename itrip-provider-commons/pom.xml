@@ -24,43 +24,35 @@
 	</properties>
 
 	<dependencies>
-		<!-- 配置itrip-commons的依赖关系[begin] -->
-		<dependency>
-			<groupId>cn.ekgc.itrip</groupId>
-			<artifactId>itrip-commons</artifactId>
-			<version>${parent.version}</version>
-		</dependency>
-		<!-- 配置itrip-commons的依赖关系[end] -->
-
-		<!-- 配置Spring Boot Starter JDBC项目的依赖关系[begin] -->
+		<!-- 配置 Spring Boot Starter JDBC 项目的依赖关系[begin] -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-		<!-- 配置Spring Boot Starter JDBC项目的依赖关系[end] -->
+		<!-- 配置 Spring Boot Starter JDBC 项目的依赖关系[end] -->
 
-		<!-- 配置MySql数据库连接依赖关系[begin] -->
+		<!-- 配置 MySql 数据库连接依赖关系[begin] -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-		<!-- 配置MySql数据库连接依赖关系[end] -->
+		<!-- 配置 MySql 数据库连接依赖关系[end] -->
 
-		<!-- 配置Mybatis Spring Boot的依赖关系[begin] -->
+		<!-- 配置 Mybatis Spring Boot 的依赖关系[begin] -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>${mybatis-spring-boot-starter.version}</version>
 		</dependency>
-		<!-- 配置Mybatis Spring Boot的依赖关系[end] -->
+		<!-- 配置 Mybatis Spring Boot 的依赖关系[end] -->
 
-		<!-- 配置数据库连接池Druid Spring Boot的依赖关系[begin] -->
+		<!-- 配置数据库连接池 Druid Spring Boot 的依赖关系[begin] -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-starter</artifactId>
 			<version>${druid-spring-boot-starter.version}</version>
 		</dependency>
-		<!-- 配置数据库连接池Druid Spring Boot的依赖关系[end] -->
+		<!-- 配置数据库连接池 Druid Spring Boot 的依赖关系[end] -->
 
 		<dependency>
 			<groupId>junit</groupId>

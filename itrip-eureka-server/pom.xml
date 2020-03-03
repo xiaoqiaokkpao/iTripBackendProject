@@ -7,13 +7,13 @@
 	<artifactId>itrip-eureka-server</artifactId>
 	<packaging>jar</packaging>
 
-	<!-- 配置使用itrip-parent作为父级依赖关系[begin] -->
+	<!-- 配置使用 itrip-parent 作为父级依赖关系[begin] -->
 	<parent>
 		<groupId>cn.ekgc.itrip</groupId>
 		<artifactId>itrip-parent</artifactId>
 		<version>1.0.0</version>
 	</parent>
-	<!-- 配置使用itrip-parent作为父级依赖关系[end] -->
+	<!-- 配置使用 itrip-parent 作为父级依赖关系[end] -->
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,12 +22,12 @@
 	</properties>
 
 	<dependencies>
-		<!-- 配置Spring Cloud Eureka Server的依赖关系[begin] -->
+		<!-- 配置 Spring Cloud Eureka Server 的依赖关系[begin] -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
 		</dependency>
-		<!-- 配置Spring Cloud Eureka Server的依赖关系[end] -->
+		<!-- 配置 Spring Cloud Eureka Server 的依赖关系[end] -->
 
 		<dependency>
 			<groupId>junit</groupId>
