@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ekgc.itrip.dao.UserDao">
+	<select id="findUserListByQuery" parameterType="User" resultMap="userMap">
+		select
+			iu.id,
+			iu.userCode,
+			iu.userPassword,
+			iu.userType,
+			iu.flatID,
+			iu.userName,
+			iu.weChat,
+			iu.QQ,
+			iu.weibo,
+			iu.baidu,
+			iu.creationDate,
+			iu.createdBy,
+			iu.modifyDate,
+			iu.modifiedBy,
+			iu.activated
+		from
+			itrip_user iu
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">iu.id=#{id} and </if>
+				<if test="userCode != null">iu.userCode=#{userCode} and </if>
+			</trim>
+		</where>
+	</select>
+	
+	<resultMap id="userMap" type="User">
+		<id property="id" javaType="java.lang.Long" column="id"/>
+		<result property="userCode" javaType="java.lang.String" column="userCode"/>
+		<result property="userPassword" javaType="java.lang.String" column="userPassword"/>
+		<result property="userType" javaType="java.lang.Integer" column="userType"/>
+		<result property="flatID" javaType="java.lang.Long" column="flatID"/>
+		<result property="userName" javaType="java.lang.String" column="userName"/>
+		<result property="weChat" javaType="java.lang.String" column="weChat"/>
+		<result property="QQ" javaType="java.lang.String" column="QQ"/>
+		<result property="weibo" javaType="java.lang.String" column="weibo"/>
+		<result property="baidu" javaType="java.lang.String" column="baidu"/>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"/>
+		<result property="createdBy" javaType="java.lang.String" column="createdBy"/>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"/>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"/>
+		<result property="activated" javaType="java.lang.Integer" column="activated"/>
+	</resultMap>
+
+</mapper>

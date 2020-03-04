@@ -22,19 +22,19 @@
 	</properties>
 
 	<dependencies>
-		<!-- 配置 Spring Cloud Eureka Client 的依赖关系[begin] -->
+		<!-- 配置 Spring Cloud Eureka Client 依赖关系 [BEGIN] -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-		<!-- 配置 Spring Cloud Eureka Client 的依赖关系[end] -->
+		<!-- 配置 Spring Cloud Eureka Client 依赖关系 [END] -->
 
-		<!-- 配置 Spring Cloud OpenFeign 的依赖关系[begin] -->
+		<!-- 配置 Spring Cloud OpenFeign 依赖关系 [BEGIN] -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		<!-- 配置 Spring Cloud OpenFeign 的依赖关系[end] -->
+		<!-- 配置 Spring Cloud OpenFeign 依赖关系 [END] -->
 
 		<dependency>
 			<groupId>junit</groupId>

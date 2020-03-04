@@ -1,5 +1,5 @@
-### 配置Eureka 注册中心位置
+### 配置 Eureka 注册中心位置
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:11111/eureka/
+      defaultZone: http://localhost:9999/eureka/
