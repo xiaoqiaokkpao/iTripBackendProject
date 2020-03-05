@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.service;
 
 import cn.ekgc.itrip.pojo.entity.User;
+import cn.ekgc.itrip.pojo.vo.UserVO;
 
 import java.util.List;
 
@@ -18,4 +19,11 @@ public interface UserService {
 	 * @throws Exception
 	 */
 	List<User> getListByQuery(User query) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 */
+	boolean saveUser(User user) throws Exception;
 }

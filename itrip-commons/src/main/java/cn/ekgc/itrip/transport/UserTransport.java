@@ -25,4 +25,13 @@ public interface UserTransport {
 	 */
 	@PostMapping(value = "/list")
 	List<User> getListByQuery(@RequestBody User query) throws Exception;
+
+	/**
+	 * <b>保存用户信息</b>
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/save")
+	boolean saveUser(@RequestBody User user) throws Exception;
 }

@@ -28,7 +28,44 @@
 			</trim>
 		</where>
 	</select>
-	
+
+	<insert id="saveUser" parameterType="User">
+		insert into itrip_user(
+			<trim suffixOverrides=",">
+				<if test="userCode != null">userCode, </if>
+				<if test="userPassword != null">userPassword, </if>
+				<if test="userType != null">userType, </if>
+				<if test="flatID != null">flatID, </if>
+				<if test="userName != null">userName, </if>
+				<if test="weChat != null">weChat, </if>
+				<if test="QQ != null">QQ, </if>
+				<if test="weibo != null">weibo, </if>
+				<if test="baidu != null">baidu, </if>
+				<if test="creationDate != null">creationDate, </if>
+				<if test="createdBy != null">createdBy, </if>
+				<if test="modifyDate != null">modifyDate, </if>
+				<if test="modifiedBy != null">modifiedBy, </if>
+				<if test="activated != null">activated, </if>
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="userCode != null">#{userCode}, </if>
+				<if test="userPassword != null">#{userPassword}, </if>
+				<if test="userType != null">#{userType}, </if>
+				<if test="flatID != null">#{flatID}, </if>
+				<if test="userName != null">#{userName}, </if>
+				<if test="weChat != null">#{weChat}, </if>
+				<if test="QQ != null">#{QQ}, </if>
+				<if test="weibo != null">#{weibo}, </if>
+				<if test="baidu != null">#{baidu}, </if>
+				<if test="creationDate != null">#{creationDate}, </if>
+				<if test="createdBy != null">#{createdBy}, </if>
+				<if test="modifyDate != null">#{modifyDate}, </if>
+				<if test="modifiedBy != null">#{modifiedBy}, </if>
+				<if test="activated != null">#{activated}, </if>
+			</trim>
+		)
+	</insert>
 	<resultMap id="userMap" type="User">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="userCode" javaType="java.lang.String" column="userCode"/>
