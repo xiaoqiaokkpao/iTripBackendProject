@@ -1,4 +1,4 @@
 ### 配置文件所使用的后缀
 spring:
   profiles:
-    active: dev, eureka-client
+    active: dev, eureka-client, mail

@@ -54,6 +54,13 @@
 		</dependency>
 		<!-- 配置数据库连接池 Druid Spring Boot 的依赖关系[end] -->
 
+		<!-- 配置 Spring Boot Starter Redis 的依赖关系 [begin] -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<!-- 配置 Spring Boot Starter Redis 的依赖关系 [end] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
