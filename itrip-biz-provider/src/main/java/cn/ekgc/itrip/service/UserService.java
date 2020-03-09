@@ -26,4 +26,19 @@ public interface UserService {
 	 * @return
 	 */
 	boolean saveUser(User user) throws Exception;
+
+	/**
+	 * <b>通过userCode在Redis中查询对应的激活码</b>
+	 * @param userCode
+	 * @return
+	 * @throws Exception
+	 */
+	String getActiveCodeByUserCode(String userCode) throws Exception;
+
+	/**
+	 * <b>修改用户信息</b>
+	 * @param user
+	 * @return
+	 */
+	boolean updateUser(User user) throws Exception;
 }
