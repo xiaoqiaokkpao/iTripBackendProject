@@ -51,6 +51,14 @@
 		</dependency>
 		<!-- 配置容联云短信业务的依赖关系 [end] -->
 
+		<!-- 配置 JWT 所需依赖关系 [begin] -->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>java-jwt</artifactId>
+			<version>3.10.0</version>
+		</dependency>
+		<!-- 配置 JWT 所需依赖关系 [end] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
