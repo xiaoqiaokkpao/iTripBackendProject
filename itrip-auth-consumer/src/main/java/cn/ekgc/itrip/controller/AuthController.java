@@ -24,7 +24,7 @@ import java.util.List;
  */
 
 @RestController("authController")
-@RequestMapping("auth/api")
+@RequestMapping("/auth/api")
 public class AuthController extends BaseController {
 	@Autowired
 	private UserTransport userTransport;

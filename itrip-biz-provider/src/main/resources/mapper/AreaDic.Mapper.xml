@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ekgc.itrip.dao.AreaDicDao">
+	<select id="findListByQuery" parameterType="AreaDic" resultMap="areaDicMap">
+		SELECT
+			iad.id,
+			iad.name,
+			iad.areaNo,
+			iad.parent,
+			iad.isActivated,
+			iad.isTradingArea,
+			iad.isHot,
+			iad.level,
+			iad.isChina,
+			iad.pinyin,
+			iad.creationDate,
+			iad.createdBy,
+			iad.modifyDate,
+			iad.modifiedBy
+		FROM
+			itrip_area_dic iad
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null ">iad.id=#{id} and </if>
+				<if test="name != null ">iad.name=#{name} and </if>
+				<if test="areaNo != null ">iad.areaNo=#{areaNo} and </if>
+				<if test="parent != null ">iad.parent=#{parent} and </if>
+				<if test="isActivated != null ">iad.isActivated=#{isActivated} and </if>
+				<if test="isTradingArea != null ">iad.isTradingArea=#{isTradingArea} and </if>
+				<if test="isHot != null ">iad.isHot=#{isHot} and </if>
+				<if test="level != null ">iad.level=#{level} and </if>
+				<if test="isChina != null ">iad.isChina=#{isChina} and </if>
+				<if test="pinyin != null ">iad.pinyin=#{pinyin} and </if>
+			</trim>
+		</where>
+	</select>
+	
+	<resultMap id="areaDicMap" type="AreaDic">
+		<id property="id" javaType="java.lang.Long" column="id"></id>
+		<result property="name" javaType="java.lang.String" column="name"></result>
+		<result property="areaNo" javaType="java.lang.String" column="areaNo"></result>
+		<result property="parent" javaType="java.lang.Long" column="parent"></result>
+		<result property="isActivated" javaType="java.lang.Integer" column="isActivated"></result>
+		<result property="isTradingArea" javaType="java.lang.Integer" column="isTradingArea"></result>
+		<result property="isHot" javaType="java.lang.Integer" column="isHot"></result>
+		<result property="level" javaType="java.lang.Integer" column="level"></result>
+		<result property="isChina" javaType="java.lang.Integer" column="isChina"></result>
+		<result property="pinyin" javaType="java.lang.String" column="pinyin"></result>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"></result>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"></result>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"></result>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"></result>
+	</resultMap>
+</mapper>

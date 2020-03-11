@@ -17,7 +17,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @RestController("userTransport")
-@RequestMapping("user/trans")
+@RequestMapping("/user/trans")
 public class UserTransportImpl implements UserTransport {
 	@Autowired
 	private UserService userService;
@@ -52,7 +52,7 @@ public class UserTransportImpl implements UserTransport {
 	 * @throws Exception
 	 */
 	@PostMapping(value = "/activeCode")
-	public String getActiveCodeByUserCode(String userCode) throws Exception {
+	public String getActiveCodeByUserCode(@RequestBody String userCode) throws Exception {
 		return userService.getActiveCodeByUserCode(userCode);
 	}
 

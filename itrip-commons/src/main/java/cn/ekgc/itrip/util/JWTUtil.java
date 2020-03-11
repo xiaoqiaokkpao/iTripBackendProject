@@ -31,11 +31,13 @@ public class JWTUtil {
 		JWTCreator.Builder builder = JWT.create();
 
 		// 创建Map集合，用于存储JWT的头部信息
-		Map<String, String> header = new HashMap<String, String>();
+		Map<String, Object> header = new HashMap<String, Object>();
 		// 设定加密算法
 		header.put("alg", "HS256");
 		// 设定Token类型
 		header.put("typ", "JWT");
+
+		builder.withHeader(header);
 
 		// 设定有效载荷
 		builder.withClaim("id", id);

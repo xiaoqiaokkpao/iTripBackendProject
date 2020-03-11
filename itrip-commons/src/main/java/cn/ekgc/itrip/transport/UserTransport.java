@@ -15,7 +15,7 @@ import java.util.List;
  * @since 1.0.0
  */
 @FeignClient(name = "itrip-biz-provider")
-@RequestMapping("user/trans")
+@RequestMapping("/user/trans")
 public interface UserTransport {
 	/**
 	 * <b>根据查询信息查询用户信息列表</b>
