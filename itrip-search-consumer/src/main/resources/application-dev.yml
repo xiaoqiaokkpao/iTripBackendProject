@@ -1,0 +1,7 @@
+#### 启动端口号
+server:
+  port: 44444
+### 项目应用名
+spring:
+  application:
+    name: itrip-search-consumer

@@ -61,6 +61,14 @@
 		</dependency>
 		<!-- 配置 Spring Boot Starter Redis 的依赖关系 [end] -->
 
+		<!-- 配置分页查询PageHelper的依赖关系[begin] -->
+		<dependency>
+			<groupId>com.github.pagehelper</groupId>
+			<artifactId>pagehelper-spring-boot-starter</artifactId>
+			<version>1.2.13</version>
+		</dependency>
+		<!-- 配置分页查询PageHelper的依赖关系[end] -->
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
