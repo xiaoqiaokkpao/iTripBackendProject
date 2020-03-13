@@ -1,6 +1,6 @@
 package cn.ekgc.itrip.service;
 
-import cn.ekgc.itrip.pojo.entity.Hotel;
+import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 
 import java.util.List;
@@ -17,5 +17,5 @@ public interface HotelService {
 	 * @param queryVo
 	 * @return
 	 */
-	List<Hotel> searchItripHotelListByHotCity(SearchHotCityVO queryVo) throws Exception;
+	List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO queryVo) throws Exception;
 }

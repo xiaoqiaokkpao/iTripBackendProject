@@ -1,15 +1,18 @@
 package cn.ekgc.itrip.service.impl;
 
 import cn.ekgc.itrip.dao.HotelDao;
-import cn.ekgc.itrip.pojo.entity.Hotel;
+import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.itrip.service.HotelService;
-import com.github.pagehelper.PageHelper;
+import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.SolrQuery;
+import org.apache.solr.client.solrj.impl.HttpSolrClient;
+import org.apache.solr.client.solrj.impl.XMLResponseParser;
+import org.apache.solr.client.solrj.response.QueryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +25,8 @@ import java.util.List;
 @Transactional
 public class HotelServiceImpl implements HotelService {
 	@Autowired
+	private SolrClient solrClient;
+	@Autowired
 	private HotelDao hotelDao;
 
 	/**
@@ -30,17 +35,17 @@ public class HotelServiceImpl implements HotelService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Hotel> searchItripHotelListByHotCity(SearchHotCityVO queryVo) throws Exception{
-		// 封装查询对象
-		Hotel query = new Hotel();
-		query.setCityId((long)queryVo.getCityId());
-
-		// 为获得前六条，使用分页进行查询
-		PageHelper.startPage(1, queryVo.getCount());
-		List<Hotel> hotelList = hotelDao.findListByQuery(query);
-		if (hotelList != null){
-			return hotelList;
-		}
-		return new ArrayList<Hotel>();
+	public List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO queryVo) throws Exception {
+		// 对于Spring Boot注入的SolrClient就是HttpSolrClient对象，进行强制类型转换
+		HttpSolrClient httpSolrClient = (HttpSolrClient) solrClient;
+		httpSolrClient.setParser(new XMLResponseParser());
+		// 创建Solr的查询参数
+		SolrQuery solrQuery = new SolrQuery();
+		solrQuery.setQuery("cityId:" + queryVo.getCityId());
+		solrQuery.setRows(queryVo.getCount());
+		// 使用SolrClient进行查询，QueryResponse
+		QueryResponse queryResponsey = solrClient.query(solrQuery);
+		// 通过使用QueryResponse提取结果
+		return queryResponsey.getBeans(HotelVO.class);
 	}
 }

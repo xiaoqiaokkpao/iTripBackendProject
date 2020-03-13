@@ -2,7 +2,7 @@ package cn.ekgc.itrip.controller;
 
 import cn.ekgc.itrip.base.controller.BaseController;
 import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
-import cn.ekgc.itrip.pojo.entity.Hotel;
+import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.itrip.transport.HotelTransport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class SearchController extends BaseController {
 	 */
 	@PostMapping(value = "/hotellist/searchItripHotelListByHotCity")
 	public ResponseDto<Object> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO queryVo) throws Exception{
-		List<Hotel> hotelList = hotelTransport.searchItripHotelListByHotCity(queryVo);
+		List<HotelVO> hotelList = hotelTransport.searchItripHotelListByHotCity(queryVo);
 		return ResponseDto.success(hotelList);
 	}
 }

@@ -1,6 +1,6 @@
 package cn.ekgc.itrip.transport;
 
-import cn.ekgc.itrip.pojo.entity.Hotel;
+import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,5 +24,5 @@ public interface HotelTransport {
 	 * @return
 	 */
 	@PostMapping(value = "/searchItripHotelListByHotCity")
-	List<Hotel> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO queryVo) throws Exception;
+	List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO queryVo) throws Exception;
 }

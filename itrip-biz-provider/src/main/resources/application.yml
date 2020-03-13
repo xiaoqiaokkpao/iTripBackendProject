@@ -1,4 +1,4 @@
 ### 配置激活文件后缀
 spring:
   profiles:
-    active: dev, eureka-client, data, redis, mail
+    active: dev, eureka-client, data, redis, mail, solr
