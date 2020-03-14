@@ -1,13 +1,11 @@
 package cn.ekgc.itrip.transport;
 
+import cn.ekgc.itrip.pojo.entity.Hotel;
 import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.itrip.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +28,16 @@ public class HotelTransportImpl implements HotelTransport {
 	@PostMapping(value = "/searchItripHotelListByHotCity")
 	public List<HotelVO> searchItripHotelListByHotCity(@RequestBody SearchHotCityVO queryVo) throws Exception {
 		return hotelService.searchItripHotelListByHotCity(queryVo);
+	}
+
+	/**
+	 * <b>根据主键查询对象信息</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/id")
+	public Hotel getHotelById(@RequestParam Long hotelId) throws Exception{
+		return hotelService.getHotelById(hotelId);
 	}
 }

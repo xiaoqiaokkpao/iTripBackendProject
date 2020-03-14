@@ -1,5 +1,6 @@
 package cn.ekgc.itrip.service;
 
+import cn.ekgc.itrip.pojo.entity.Hotel;
 import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 
@@ -18,4 +19,12 @@ public interface HotelService {
 	 * @return
 	 */
 	List<HotelVO> searchItripHotelListByHotCity(SearchHotCityVO queryVo) throws Exception;
+
+	/**
+	 * <b>根据主键查询对象信息</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	Hotel getHotelById(Long hotelId)throws Exception;
 }

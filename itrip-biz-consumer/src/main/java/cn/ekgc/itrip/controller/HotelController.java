@@ -4,8 +4,10 @@ import cn.ekgc.itrip.base.controller.BaseController;
 import cn.ekgc.itrip.base.enums.AreaHotEnum;
 import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.AreaDic;
+import cn.ekgc.itrip.pojo.entity.Hotel;
 import cn.ekgc.itrip.pojo.entity.LabelDic;
 import cn.ekgc.itrip.transport.AreaDicTransport;
+import cn.ekgc.itrip.transport.HotelTransport;
 import cn.ekgc.itrip.transport.LabelDicTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +31,8 @@ public class HotelController extends BaseController {
 	private AreaDicTransport areaDicTransport;
 	@Autowired
 	private LabelDicTransport labelDicTransport;
+	@Autowired
+	private HotelTransport hotelTransport;
 
 	/**
 	 * <b>查询热门城市</b>
@@ -60,5 +64,17 @@ public class HotelController extends BaseController {
 		List<LabelDic> labelDicList = labelDicTransport.getListByQuery(query);
 
 		return ResponseDto.success(labelDicList);
+	}
+
+	/**
+	 * <b>根据酒店id，查询酒店特色，商圈，酒店名称（视屏文字信息）</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping(value = "/getvideodesc/{hotelId}")
+	public ResponseDto<Object> getVideoDesc(@PathVariable("hotelId") Long hotelId)throws Exception{
+		Hotel hotel = hotelTransport.getHotelById(hotelId);
+		return ResponseDto.success(hotel);
 	}
 }

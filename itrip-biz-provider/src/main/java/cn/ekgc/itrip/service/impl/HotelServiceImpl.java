@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.service.impl;
 
 import cn.ekgc.itrip.dao.HotelDao;
+import cn.ekgc.itrip.pojo.entity.Hotel;
 import cn.ekgc.itrip.pojo.vo.HotelVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotCityVO;
 import cn.ekgc.itrip.service.HotelService;
@@ -47,5 +48,23 @@ public class HotelServiceImpl implements HotelService {
 		QueryResponse queryResponsey = solrClient.query(solrQuery);
 		// 通过使用QueryResponse提取结果
 		return queryResponsey.getBeans(HotelVO.class);
+	}
+
+	/**
+	 * <b>根据主键查询对象信息</b>
+	 * @param hotelId
+	 * @return
+	 * @throws Exception
+	 */
+	public Hotel getHotelById(Long hotelId)throws Exception{
+		// 创建查询对象
+		Hotel query = new Hotel();
+		query.setId(hotelId);
+		// 进行列表查询
+		List<Hotel> hotelList = hotelDao.findListByQuery(query);
+		if (hotelList != null && hotelList.size() > 0){
+			return hotelList.get(0);
+		}
+		return new Hotel();
 	}
 }
