@@ -1,9 +1,7 @@
 package cn.ekgc.itrip.dao;
 
-import cn.ekgc.itrip.pojo.entity.HotelOrder;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Map;
 
 /**
