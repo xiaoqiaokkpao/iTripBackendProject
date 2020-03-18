@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ekgc.itrip.dao.ItripImageDao">
+	<select id="findListByQuery" parameterType="ItripImage" resultMap="itripImageMap">
+		SELECT
+			ii.id,
+			ii.type,
+			ii.targetId,
+			ii.position,
+			ii.imgUrl,
+			ii.creationDate,
+			ii.createdBy,
+			ii.modifyDate,
+			ii.modifiedBy
+		FROM
+			itrip_image ii
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">ii.id=#{id} and </if>
+				<if test="type != null">ii.type=#{type} and </if>
+				<if test="targetId != null">ii.targetId=#{targetId} and </if>
+			</trim>
+		</where>
+	</select>
+
+	<resultMap id="itripImageMap" type="ItripImage">
+		<id property="id" javaType="java.lang.Long" column="id"></id>
+		<result property="type" javaType="java.lang.String" column="type"></result>
+		<result property="targetId" javaType="java.lang.Long" column="targetId"></result>
+		<result property="position" javaType="java.lang.Integer" column="position"></result>
+		<result property="imgUrl" javaType="java.lang.String" column="imgUrl"></result>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"></result>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"></result>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"></result>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"></result>
+	</resultMap>
+</mapper>

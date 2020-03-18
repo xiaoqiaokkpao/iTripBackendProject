@@ -2,13 +2,16 @@ package cn.ekgc.itrip.controller;
 
 import cn.ekgc.itrip.base.controller.BaseController;
 import cn.ekgc.itrip.base.enums.AreaHotEnum;
+import cn.ekgc.itrip.base.enums.ImageTypeEnum;
 import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.AreaDic;
 import cn.ekgc.itrip.pojo.entity.Hotel;
+import cn.ekgc.itrip.pojo.entity.ItripImage;
 import cn.ekgc.itrip.pojo.entity.LabelDic;
 import cn.ekgc.itrip.pojo.vo.SearchDetailsHotelVO;
 import cn.ekgc.itrip.transport.AreaDicTransport;
 import cn.ekgc.itrip.transport.HotelTransport;
+import cn.ekgc.itrip.transport.ItripImageTransport;
 import cn.ekgc.itrip.transport.LabelDicTransport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +38,8 @@ public class HotelController extends BaseController {
 	private LabelDicTransport labelDicTransport;
 	@Autowired
 	private HotelTransport hotelTransport;
+	@Autowired
+	private ItripImageTransport itripImageTransport;
 
 	/**
 	 * <b>查询热门城市</b>
@@ -127,6 +132,21 @@ public class HotelController extends BaseController {
 	public ResponseDto<Object> queryHotelPolicy(@PathVariable("hotelId") Long hotelId)throws Exception{
 		Hotel hotel = hotelTransport.getHotelById(hotelId);
 		return ResponseDto.success(hotel.getHotelPolicy());
+	}
+
+	/**
+	 * <b>根据targetId查询酒店图片(type=0)</b>
+	 * @param targetId
+	 * @return
+	 * @throws Exception
+	 */
+	@GetMapping(value = "/getimg/{targetId}")
+	public ResponseDto<Object> getImgForHotel(@PathVariable("targetId") Long targetId) throws Exception{
+		ItripImage query = new ItripImage();
+		query.setTargetId(targetId);
+		query.setType(String.valueOf(ImageTypeEnum.IMAGE_TYPE_HOTEL.getCode()));
+
+		return ResponseDto.success(itripImageTransport.getImageListByQuery(query));
 	}
 
 }
