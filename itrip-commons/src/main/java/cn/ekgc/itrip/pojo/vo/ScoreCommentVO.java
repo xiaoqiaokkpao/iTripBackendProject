@@ -10,6 +10,16 @@ public class ScoreCommentVO implements Serializable {
 	private float avgHygieneScore;          //点评查询页面酒店的卫生得分
 	private float avgScore;                 //点评查询页面酒店的总体得分
 
+	public ScoreCommentVO(){}
+
+	public ScoreCommentVO(float avgPositionScore, float avgFacilitiesScore, float avgServiceScore, float avgHygieneScore, float avgScore) {
+		this.avgPositionScore = avgPositionScore;
+		this.avgFacilitiesScore = avgFacilitiesScore;
+		this.avgServiceScore = avgServiceScore;
+		this.avgHygieneScore = avgHygieneScore;
+		this.avgScore = avgScore;
+	}
+
 	public float getAvgPositionScore() {
 		return avgPositionScore;
 	}

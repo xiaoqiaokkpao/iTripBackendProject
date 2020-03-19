@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.ekgc.itrip.dao.CommentScoreDao">
+<mapper namespace="cn.ekgc.itrip.dao.ScoreCommentDao">
+	<select id="findListByQuery" parameterType="Comment" resultMap="commentMap">
+		SELECT
+			AVG(ic.positionScore) po,
+			AVG(ic.facilitiesScore) fa,
+			AVG(ic.serviceScore) se,
+			AVG(ic.hygieneScore) hy,
+			AVG(ic.score) sc
+		FROM
+			itrip_comment ic
+		where
+			ic.hotelId=#{hotelId}
+	</select>
 
+	<resultMap id="commentMap" type="cn.ekgc.itrip.pojo.vo.ScoreCommentVO">
+		<result property="avgPositionScore" javaType="java.lang.Float" column="po"></result>
+		<result property="avgFacilitiesScore" javaType="java.lang.Float" column="fa"></result>
+		<result property="avgServiceScore" javaType="java.lang.Float" column="se"></result>
+		<result property="avgHygieneScore" javaType="java.lang.Float" column="hy"></result>
+		<result property="avgScore" javaType="java.lang.Float" column="sc"></result>
+	</resultMap>
 </mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.ekgc.itrip.dao.UserLinkUserDao">
+	<select id="findUserLinkUserListByQuery" parameterType="UserLinkUser" resultMap="userLinkUserMap">
+		SELECT
+			iulu.id,
+			iulu.linkUserName,
+			iulu.linkIdCard,
+			iulu.linkPhone,
+			iulu.userId,
+			iulu.creationDate,
+			iulu.createdBy,
+			iulu.modifyDate,
+			iulu.modifiedBy,
+			iulu.linkIdCardType
+		FROM
+			itrip_user_link_user iulu JOIN itrip_user iu ON iulu.userId=iu.id
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null ">iulu.id=#{id} and </if>
+				<if test="userId != null ">iulu.userId=#{userId} and </if>
+				<if test="userCode != null ">iu.userCode=#{userCode} and </if>
+			</trim>
+		</where>
+	</select>
+
+	<resultMap id="userLinkUserMap" type="UserLinkUser">
+		<id property="id" javaType="java.lang.Long" column="id"></id>
+		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"></result>
+		<result property="linkIdCard" javaType="java.lang.String" column="linkIdCard"></result>
+		<result property="linkPhone" javaType="java.lang.String" column="linkPhone"></result>
+		<result property="userId" javaType="java.lang.Integer" column="userId"></result>
+		<result property="creationDate" javaType="java.util.Date" column="creationDate"></result>
+		<result property="createdBy" javaType="java.lang.Long" column="createdBy"></result>
+		<result property="modifyDate" javaType="java.util.Date" column="modifyDate"></result>
+		<result property="modifiedBy" javaType="java.lang.Long" column="modifiedBy"></result>
+		<result property="linkIdCardType" javaType="java.lang.Integer" column="linkIdCardType"></result>
+	</resultMap>
+</mapper>

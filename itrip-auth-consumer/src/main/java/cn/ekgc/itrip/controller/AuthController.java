@@ -212,7 +212,7 @@ public class AuthController extends BaseController {
 						// 使用当前登录用户的id生成Token信息
 						String token = JWTUtil.createToken(user.getId());
 						// 将token随着响应交给浏览器
-						response.setHeader("Authorization", token);
+						response.setHeader("token", token);
 						return ResponseDto.success(token);
 					} else {
 						return ResponseDto.falure("该用户未激活！");

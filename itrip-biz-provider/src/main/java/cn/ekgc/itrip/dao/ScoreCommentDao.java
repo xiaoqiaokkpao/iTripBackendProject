@@ -1,6 +1,10 @@
 package cn.ekgc.itrip.dao;
 
+import cn.ekgc.itrip.pojo.entity.Comment;
+import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <b>爱旅行-酒店房间评分数据持久层接口</b>
@@ -10,5 +14,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ScoreCommentDao {
-
+	/**
+	 * <b>通过查询条件查询相关信息</b>
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+	ScoreCommentVO findListByQuery(Comment query)throws Exception;
 }
