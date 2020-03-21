@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.service;
 
 import cn.ekgc.itrip.pojo.entity.HotelRoom;
+import cn.ekgc.itrip.pojo.vo.AddHotelOrderVO;
 import cn.ekgc.itrip.pojo.vo.SearchHotelRoomVO;
 import cn.ekgc.itrip.pojo.vo.ValidateRoomStoreVO;
 
@@ -36,4 +37,5 @@ public interface HotelRoomService {
 	 * @throws Exception
 	 */
 	int getHotelRoomStoreByDate(ValidateRoomStoreVO validateRoomStoreVO)throws Exception;
+
 }

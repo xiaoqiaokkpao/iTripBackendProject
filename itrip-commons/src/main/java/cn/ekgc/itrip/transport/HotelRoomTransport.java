@@ -46,4 +46,5 @@ public interface HotelRoomTransport {
 	 */
 	@PostMapping(value = "/store")
 	int queryHotelRoomStoreByDate(@RequestBody ValidateRoomStoreVO validateRoomStoreVO)throws Exception;
+
 }
