@@ -14,10 +14,7 @@ import cn.ekgc.itrip.transport.UserTransport;
 import cn.ekgc.itrip.util.HotelOrderNoCreatorUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import java.util.HashMap;
@@ -114,7 +111,7 @@ public class HotelOrderController extends BaseController {
 			Long day1 = addHotelOrderVO.getCheckInDate().getTime();
 			Long day2 = addHotelOrderVO.getCheckOutDate().getTime();
 			Long day3 = (day2 - day1) / (1000 * 3600 *24);
-			Integer days = (Integer.parseInt(String.valueOf(day3))) + 1;
+			Integer days = (Integer.parseInt(String.valueOf(day3)));
 			hotelOrder.setBookingDays(days);
 			// 支付金额
 			HotelRoom hotelRoom = hotelRoomTransport.queryHotelRoomById(addHotelOrderVO.getRoomId());
@@ -132,8 +129,8 @@ public class HotelOrderController extends BaseController {
 
 			// 获得 HotelOrder 对象的 id 和 OrderId 添加为 Map 集合
 			// 返回该 Map 集合
-			// HotelOrder query = new HotelOrder();
-			// query.setOrderNo(orderNo);
+			HotelOrder query = new HotelOrder();
+			query.setOrderNo(orderNo);
 			HotelOrder order = hotelOrderTransport.getHotelOrderByNo(orderNo);
 
 			Map<String, Object> map = new HashMap<String, Object>();
@@ -144,5 +141,24 @@ public class HotelOrderController extends BaseController {
 		}
 
 		return null;
+	}
+
+	@GetMapping(value = "/getpersonalorderinfo/{orderId}")
+	public ResponseDto<Object> getPersonalOrderInfo(@PathVariable("orderId") Long orderId) throws Exception{
+
+		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
+	}
+
+
+	@GetMapping(value = "/queryOrderById/{orderId}")
+	public ResponseDto<Object> queryOrderById(@PathVariable("orderId") Long orderId) throws Exception{
+
+		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
+	}
+
+	@GetMapping(value = "/getpersonalorderroominfo/{orderId}")
+	public ResponseDto<Object> getPersonalOrderRoomInfo(@PathVariable("orderId") Long orderId) throws Exception{
+
+		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
 	}
 }

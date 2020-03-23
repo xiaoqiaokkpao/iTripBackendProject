@@ -33,4 +33,5 @@ public class ScoreCommentController extends BaseController {
 
 		return ResponseDto.success(scoreCommentTransport.getScoreCommentByHotelId(hotelId));
 	}
+
 }

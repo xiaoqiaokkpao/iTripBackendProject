@@ -3,6 +3,8 @@ package cn.ekgc.itrip.service;
 import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
 
+import java.util.List;
+
 
 /**
  * <b>爱旅行-酒店房间评分业务类接口</b>
@@ -18,4 +20,5 @@ public interface ScoreCommentService {
 	 * @throws Exception
 	 */
 	ScoreCommentVO getListByQuery(Long hotelId) throws Exception;
+
 }

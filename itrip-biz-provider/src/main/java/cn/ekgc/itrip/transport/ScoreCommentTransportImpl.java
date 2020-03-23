@@ -1,5 +1,6 @@
 package cn.ekgc.itrip.transport;
 
+import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
 import cn.ekgc.itrip.service.ScoreCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,4 +28,5 @@ public class ScoreCommentTransportImpl implements ScoreCommentTransport{
 	public ScoreCommentVO getScoreCommentByHotelId(@RequestParam Long hotelId)throws Exception{
 		return scoreCommentService.getListByQuery(hotelId);
 	}
+
 }

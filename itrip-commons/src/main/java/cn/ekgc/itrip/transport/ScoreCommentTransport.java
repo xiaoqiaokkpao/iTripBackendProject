@@ -1,5 +1,6 @@
 package cn.ekgc.itrip.transport;
 
+import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,4 +25,5 @@ public interface ScoreCommentTransport {
 	 */
 	@PostMapping(value = "/hotelId")
 	ScoreCommentVO getScoreCommentByHotelId(@RequestParam Long hotelId)throws Exception;
+
 }

@@ -18,7 +18,7 @@ public class Comment implements Serializable {
 	private Integer serviceScore;
 	private Integer hygieneScore;
 	private Integer score;
-	private String tripMode;
+	private Long tripMode;
 	private Integer isOk;
 	private Date creationDate;
 	private Long createdBy;
@@ -129,11 +129,11 @@ public class Comment implements Serializable {
 		this.score = score;
 	}
 
-	public String getTripMode() {
+	public Long getTripMode() {
 		return tripMode;
 	}
 
-	public void setTripMode(String tripMode) {
+	public void setTripMode(Long tripMode) {
 		this.tripMode = tripMode;
 	}
 

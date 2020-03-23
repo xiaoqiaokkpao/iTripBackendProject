@@ -20,5 +20,6 @@ public interface ScoreCommentDao {
 	 * @return
 	 * @throws Exception
 	 */
-	ScoreCommentVO findListByQuery(Comment query)throws Exception;
+	List<Comment> findListByQuery(Comment query)throws Exception;
+
 }
