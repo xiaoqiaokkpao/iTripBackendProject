@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.UserLinkUser;
+import cn.ekgc.itrip.pojo.vo.AddUserLinkUserVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,4 +26,12 @@ public interface UserLinkUserTransport {
 	 */
 	@PostMapping(value = "/list")
 	List<UserLinkUser> queryUserLinkUser(@RequestBody UserLinkUser query) throws Exception;
+
+	/**
+	 * <b>新增常用联系人</b>
+	 * @param userLinkUser
+	 * @return
+	 */
+	@PostMapping(value = "/add")
+	boolean addUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception;
 }

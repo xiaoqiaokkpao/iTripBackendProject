@@ -2,6 +2,7 @@ package cn.ekgc.itrip.service.impl;
 
 import cn.ekgc.itrip.dao.UserLinkUserDao;
 import cn.ekgc.itrip.pojo.entity.UserLinkUser;
+import cn.ekgc.itrip.pojo.vo.AddUserLinkUserVO;
 import cn.ekgc.itrip.service.UserLinkUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,18 @@ public class UserLinkUserServiceImpl implements UserLinkUserService {
 			return userLinkUserList;
 		}
 		return new ArrayList<UserLinkUser>();
+	}
+
+	/**
+	 * <b>新增常用联系人</b>
+	 * @param userLinkUser
+	 * @return
+	 */
+	public boolean addUserLinkUser(UserLinkUser userLinkUser) throws Exception{
+		int count = userLinkUserDao.save(userLinkUser);
+		if (count > 0){
+			return true;
+		}
+		return false;
 	}
 }

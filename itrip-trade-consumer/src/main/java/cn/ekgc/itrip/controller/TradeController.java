@@ -1,10 +1,13 @@
 package cn.ekgc.itrip.controller;
 
 import cn.ekgc.itrip.base.controller.BaseController;
+import cn.ekgc.itrip.pojo.entity.HotelOrder;
+import cn.ekgc.itrip.transport.HotelOrderTransport;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +18,12 @@ import static com.alipay.api.AlipayConstants.APP_ID;
 @RestController("tradeController")
 @RequestMapping(value = "/trade/api")
 public class TradeController extends BaseController {
+	@Autowired
+	private HotelOrderTransport hotelOrderTransport;
 
 	@GetMapping(value = "/prepay/{tradeNo}")
 	public void testTrade(@PathVariable("tradeNo") String tradeNo) throws Exception{
+		HotelOrder hotelOrder = hotelOrderTransport.getHotelOrderByNo(tradeNo);
 		AlipayClient alipayClient =  new DefaultAlipayClient(
 				"https://openapi.alipaydev.com/gateway.do" ,
 				"2016101800719619",
@@ -30,10 +36,10 @@ public class TradeController extends BaseController {
 		alipayRequest.setReturnUrl( "http://localhost/itrip" );
 		alipayRequest.setNotifyUrl( "http://domain.com/CallBack/notify_url.jsp" ); //在公共参数中设置回跳和通知地址
 		alipayRequest.setBizContent( "{"  +
-				"    \"out_trade_no\":\"20150320010101001\","  +
+				"    \"out_trade_no\":\" " + tradeNo + "\","  +
 				"    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","  +
-				"    \"total_amount\":88.88,"  +
-				"    \"subject\":\"Iphone6 16G\","  +
+				"    \"total_amount\":" + hotelOrder.getPayAmount() + ","  +
+				"    \"subject\":\"" + hotelOrder.getHotelName() + "\","  +
 				"    \"body\":\"Iphone6 16G\","  +
 				"    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\","  +
 				"    \"extend_params\":{"  +

@@ -1,9 +1,11 @@
 package cn.ekgc.itrip.service;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
-import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
+import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -19,6 +21,7 @@ public interface ScoreCommentService {
 	 * @return
 	 * @throws Exception
 	 */
-	ScoreCommentVO getListByQuery(Long hotelId) throws Exception;
+	List<Comment> getListByQuery(Long hotelId) throws Exception;
 
+	Page<Comment> getPage(SearchCommentVO searchCommentVO) throws Exception;
 }

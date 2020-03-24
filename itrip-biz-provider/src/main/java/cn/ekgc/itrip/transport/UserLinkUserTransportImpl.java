@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.UserLinkUser;
+import cn.ekgc.itrip.pojo.vo.AddUserLinkUserVO;
 import cn.ekgc.itrip.service.UserLinkUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,5 +31,15 @@ public class UserLinkUserTransportImpl implements UserLinkUserTransport {
 	@PostMapping(value = "/list")
 	public List<UserLinkUser> queryUserLinkUser(@RequestBody UserLinkUser query) throws Exception{
 		return userLinkUserService.getUserLinkUserListByQuery(query);
+	}
+
+	/**
+	 * <b>新增常用联系人</b>
+	 * @param userLinkUser
+	 * @return
+	 */
+	@PostMapping(value = "/add")
+	public boolean addUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception{
+		return userLinkUserService.addUserLinkUser(userLinkUser);
 	}
 }

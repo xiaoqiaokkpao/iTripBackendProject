@@ -20,4 +20,11 @@ public interface UserLinkUserDao {
 	 * @throws Exception
 	 */
 	List<UserLinkUser> findUserLinkUserListByQuery(UserLinkUser query) throws Exception;
+
+	/**
+	 * <b>新增常用联系人</b>
+	 * @param userLinkUser
+	 * @return
+	 */
+	int save(UserLinkUser userLinkUser) throws Exception;
 }

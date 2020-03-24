@@ -25,6 +25,34 @@
 		</where>
 	</select>
 
+	<insert id="save" parameterType="UserLinkUser">
+		INSERT INTO itrip_user_link_user(
+			<trim suffixOverrides=",">
+				<if test="linkUserName != null ">linkUserName, </if>
+				<if test="linkIdCard != null ">linkIdCard, </if>
+				<if test="linkPhone != null ">linkPhone, </if>
+				<if test="userId != null ">userId, </if>
+				<if test="creationDate != null ">creationDate, </if>
+				<if test="createdBy != null ">createdBy, </if>
+				<if test="modifyDate != null ">modifyDate, </if>
+				<if test="modifiedBy != null ">modifiedBy, </if>
+				<if test="linkIdCardType != null ">linkIdCardType, </if>
+			</trim>
+		) values (
+		<trim suffixOverrides=",">
+			<if test="linkUserName != null ">#{linkUserName}, </if>
+			<if test="linkIdCard != null ">#{linkIdCard}, </if>
+			<if test="linkPhone != null ">#{linkPhone}, </if>
+			<if test="userId != null ">#{userId}, </if>
+			<if test="creationDate != null ">#{creationDate}, </if>
+			<if test="createdBy != null ">#{createdBy}, </if>
+			<if test="modifyDate != null ">#{modifyDate}, </if>
+			<if test="modifiedBy != null ">#{modifiedBy}, </if>
+			<if test="linkIdCardType != null ">#{linkIdCardType}, </if>
+		</trim>
+		)
+	</insert>
+
 	<resultMap id="userLinkUserMap" type="UserLinkUser">
 		<id property="id" javaType="java.lang.Long" column="id"></id>
 		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"></result>
