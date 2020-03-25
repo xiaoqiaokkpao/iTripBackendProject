@@ -42,4 +42,26 @@ public class UserLinkUserTransportImpl implements UserLinkUserTransport {
 	public boolean addUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception{
 		return userLinkUserService.addUserLinkUser(userLinkUser);
 	}
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/update")
+	public boolean modifyUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception{
+		return userLinkUserService.modifyUserLinkUser(userLinkUser);
+	}
+
+	/**
+	 * <b>删除常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/del")
+	public boolean delUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception{
+		return userLinkUserService.delUserLinkUser(userLinkUser);
+	}
 }

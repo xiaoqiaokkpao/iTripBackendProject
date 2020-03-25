@@ -24,6 +24,8 @@ public class HotelOrder implements Serializable {
 	private Integer bookingDays;
 	private Date checkInDate;
 	private Date checkOutDate;
+	private Integer pageSize;
+	private Integer pageNo;
 	private Integer orderStatus;
 	private List<Integer> orderStatusList;              // 当查询多个状态的时候使用
 	private Double payAmount;
@@ -135,6 +137,22 @@ public class HotelOrder implements Serializable {
 
 	public void setCheckOutDate(Date checkOutDate) {
 		this.checkOutDate = checkOutDate;
+	}
+
+	public Integer getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(Integer pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public Integer getPageNo() {
+		return pageNo;
+	}
+
+	public void setPageNo(Integer pageNo) {
+		this.pageNo = pageNo;
 	}
 
 	public Integer getOrderStatus() {

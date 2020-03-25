@@ -51,7 +51,32 @@
 		<where>
 			<trim suffixOverrides="and">
 				<if test="id != null">iho.id=#{id} and</if>
+				<if test="userId != null">iho.userId=#{userId} and</if>
+				<if test="orderType != null">iho.orderType=#{orderType} and</if>
 				<if test="orderNo != null">iho.orderNo=#{orderNo} and</if>
+				<if test="tradeNo != null">iho.tradeNo=#{tradeNo} and</if>
+				<if test="hotelId != null">iho.hotelId=#{hotelId} and</if>
+				<if test="hotelName != null">iho.hotelName=#{hotelName} and</if>
+				<if test="roomId != null">iho.roomId=#{roomId} and</if>
+				<if test="count != null">iho.count=#{count} and</if>
+				<if test="bookingDays != null">iho.bookingDays=#{bookingDays} and</if>
+				<if test="checkInDate != null">iho.checkInDate=#{checkInDate} and</if>
+				<if test="checkOutDate != null">iho.checkOutDate=#{checkOutDate} and</if>
+				<if test="orderStatus != null">iho.orderStatus=#{orderStatus} and</if>
+				<if test="payAmount != null">iho.payAmount=#{payAmount} and</if>
+				<if test="payType != null">iho.payType=#{payType} and</if>
+				<if test="noticePhone != null">iho.noticePhone=#{noticePhone} and</if>
+				<if test="noticeEmail != null">iho.noticeEmail=#{noticeEmail} and</if>
+				<if test="specialRequirement != null">iho.specialRequirement=#{specialRequirement} and</if>
+				<if test="isNeedInvoice != null">iho.isNeedInvoice=#{isNeedInvoice} and</if>
+				<if test="invoiceType != null">iho.invoiceType=#{invoiceType} and</if>
+				<if test="invoiceHead != null">iho.invoiceHead=#{invoiceHead} and</if>
+				<if test="linkUserName != null">iho.linkUserName=#{linkUserName} and</if>
+				<if test="bookType != null">iho.bookType=#{bookType} and</if>
+				<if test="creationDate != null">iho.creationDate=#{creationDate} and</if>
+				<if test="createdBy != null">iho.createdBy=#{createdBy} and</if>
+				<if test="modifyDate != null">iho.modifyDate=#{modifyDate} and</if>
+				<if test="modifiedBy != null">iho.modifiedBy=#{modifiedBy} and</if>
 			</trim>
 		</where>
 	</select>
@@ -59,7 +84,6 @@
 	<insert id="save" parameterType="HotelOrder">
 		INSERT INTO itrip_hotel_order(
 			<trim suffixOverrides=",">
-				<if test="id != null">id, </if>
 				<if test="userId != null">userId, </if>
 				<if test="orderType != null">orderType, </if>
 				<if test="orderNo != null">orderNo, </if>
@@ -82,10 +106,13 @@
 				<if test="invoiceHead != null">invoiceHead, </if>
 				<if test="linkUserName != null">linkUserName, </if>
 				<if test="bookType != null">bookType, </if>
+				<if test="creationDate != null">creationDate, </if>
+				<if test="createdBy != null">createdBy, </if>
+				<if test="modifyDate != null">modifyDate, </if>
+				<if test="modifiedBy != null">modifiedBy, </if>
 			</trim>
 		) values (
 			<trim suffixOverrides=",">
-				<if test="id != null">#{id}, </if>
 				<if test="userId != null">#{userId}, </if>
 				<if test="orderType != null">#{orderType}, </if>
 				<if test="orderNo != null">#{orderNo}, </if>
@@ -108,6 +135,10 @@
 				<if test="invoiceHead != null">#{invoiceHead}, </if>
 				<if test="linkUserName != null">#{linkUserName}, </if>
 				<if test="bookType != null">#{bookType}, </if>
+				<if test="creationDate != null">#{creationDate}, </if>
+				<if test="createdBy != null">#{createdBy}, </if>
+				<if test="modifyDate != null">#{modifyDate}, </if>
+				<if test="modifiedBy != null">#{modifiedBy}, </if>
 			</trim>
 		)
 	</insert>
@@ -137,6 +168,10 @@
 				<if test="invoiceHead != null">invoiceHead=#{invoiceHead}, </if>
 				<if test="linkUserName != null">linkUserName=#{linkUserName}, </if>
 				<if test="bookType != null">bookType=#{bookType}, </if>
+				<if test="creationDate != null">creationDate=#{creationDate}, </if>
+				<if test="createdBy != null">createdBy=#{createdBy}, </if>
+				<if test="modifyDate != null">modifyDate=#{modifyDate}, </if>
+				<if test="modifiedBy != null">modifiedBy=#{modifiedBy}, </if>
 			</trim>
 		</set>
 		<where>

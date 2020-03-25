@@ -34,4 +34,22 @@ public interface UserLinkUserTransport {
 	 */
 	@PostMapping(value = "/add")
 	boolean addUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/update")
+	boolean modifyUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>删除常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/del")
+	boolean delUserLinkUser(@RequestBody UserLinkUser userLinkUser) throws Exception;
 }

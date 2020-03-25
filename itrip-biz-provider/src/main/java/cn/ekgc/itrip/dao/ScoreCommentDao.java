@@ -1,11 +1,9 @@
 package cn.ekgc.itrip.dao;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
-import cn.ekgc.itrip.pojo.vo.ScoreCommentVO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * <b>爱旅行-酒店房间评分数据持久层接口</b>

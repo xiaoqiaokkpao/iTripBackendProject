@@ -25,4 +25,20 @@ public interface UserLinkUserService {
 	 * @return
 	 */
 	boolean addUserLinkUser(UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	boolean modifyUserLinkUser(UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>删除常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	boolean delUserLinkUser(UserLinkUser userLinkUser) throws Exception;
 }

@@ -27,4 +27,20 @@ public interface UserLinkUserDao {
 	 * @return
 	 */
 	int save(UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	int update(UserLinkUser userLinkUser) throws Exception;
+
+	/**
+	 * <b>删除常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	int delete(UserLinkUser userLinkUser) throws Exception;
 }

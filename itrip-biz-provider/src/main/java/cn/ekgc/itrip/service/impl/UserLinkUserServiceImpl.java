@@ -48,4 +48,32 @@ public class UserLinkUserServiceImpl implements UserLinkUserService {
 		}
 		return false;
 	}
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean modifyUserLinkUser(UserLinkUser userLinkUser) throws Exception{
+		int count = userLinkUserDao.update(userLinkUser);
+		if (count > 0){
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * <b>删除常用联系人接口</b>
+	 * @param userLinkUser
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean delUserLinkUser(UserLinkUser userLinkUser) throws Exception{
+		int count = userLinkUserDao.delete(userLinkUser);
+		if (count > 0){
+			return true;
+		}
+		return false;
+	}
 }

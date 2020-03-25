@@ -2,7 +2,11 @@ package cn.ekgc.itrip.service.impl;
 
 import cn.ekgc.itrip.dao.HotelOrderDao;
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
+import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import cn.ekgc.itrip.service.HotelOrderService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,5 +70,30 @@ public class HotelOrderServiceImpl implements HotelOrderService {
 			return hotelOrderList.get(0);
 		}
 		return new HotelOrder();
+	}
+
+	/**
+	 * <b>根据个人订单列表，并分页显示</b>
+	 * @param hotelOrder
+	 * @return
+	 * @throws Exception
+	 */
+	public Page<HotelOrder> getPage(HotelOrder hotelOrder) throws Exception{
+		// 封装对象
+		Page<HotelOrder> page = new Page<HotelOrder>();
+
+		// 设置分页
+		PageHelper.startPage(hotelOrder.getPageNo(), hotelOrder.getPageSize());
+		List<HotelOrder> hotelOrderList = hotelOrderDao.findHotelOrderListByQuery(hotelOrder);
+		// 使用PageInfo对结果进行封装
+		PageInfo pageInfo = new PageInfo(hotelOrderList);
+		page.setCurPage(pageInfo.getPageNum());
+		page.setPageSize(pageInfo.getPageSize());
+		page.setPageCount(pageInfo.getPages());
+		page.setBeginPos(pageInfo.getStartRow());
+		page.setTotal((int)pageInfo.getTotal());
+		page.setRows(hotelOrderList);
+
+		return page;
 	}
 }

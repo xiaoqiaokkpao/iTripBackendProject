@@ -53,6 +53,42 @@
 		)
 	</insert>
 
+	<update id="update" parameterType="UserLinkUser">
+		UPDATE itrip_user_link_user
+		<set>
+			<trim suffixOverrides=",">
+				<if test="linkUserName != null ">linkUserName=#{linkUserName}, </if>
+				<if test="linkIdCard != null ">linkIdCard=#{linkIdCard}, </if>
+				<if test="linkPhone != null ">linkPhone=#{linkPhone}, </if>
+				<if test="userId != null ">userId=#{userId}, </if>
+				<if test="creationDate != null ">creationDate=#{creationDate}, </if>
+				<if test="createdBy != null ">createdBy=#{createdBy}, </if>
+				<if test="modifyDate != null ">modifyDate=#{modifyDate}, </if>
+				<if test="modifiedBy != null ">modifiedBy=#{modifiedBy}, </if>
+				<if test="linkIdCardType != null ">linkIdCardType=#{linkIdCardType}, </if>
+			</trim>
+		</set>
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and</if>
+				<if test="userId != null">userId=#{userId} and</if>
+			</trim>
+		</where>
+	</update>
+
+	<delete id="delete" parameterType="UserLinkUser">
+		DELETE FROM itrip_user_link_user
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and</if>
+				<if test="linkUserName != null">linkUserName=#{linkUserName} and</if>
+				<if test="linkIdCard != null">linkIdCard=#{linkIdCard} and</if>
+				<if test="linkPhone != null">linkPhone=#{linkPhone} and</if>
+				<if test="userId != null">userId=#{userId} and</if>
+			</trim>
+		</where>
+	</delete>
+
 	<resultMap id="userLinkUserMap" type="UserLinkUser">
 		<id property="id" javaType="java.lang.Long" column="id"></id>
 		<result property="linkUserName" javaType="java.lang.String" column="linkUserName"></result>

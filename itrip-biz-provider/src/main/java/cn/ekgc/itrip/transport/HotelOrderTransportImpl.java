@@ -1,6 +1,8 @@
 package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
+import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import cn.ekgc.itrip.service.HotelOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -42,5 +44,10 @@ public class HotelOrderTransportImpl implements HotelOrderTransport {
 	@PostMapping(value = "/no")
 	public HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception{
 		return hotelOrderService.getHotelOrderByNo(orderNo);
+	}
+
+	@PostMapping(value = "/page")
+	public Page<HotelOrder> getPage(@RequestBody HotelOrder hotelOrder) throws Exception{
+		return hotelOrderService.getPage(hotelOrder);
 	}
 }

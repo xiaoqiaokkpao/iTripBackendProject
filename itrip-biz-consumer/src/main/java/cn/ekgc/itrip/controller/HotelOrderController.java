@@ -6,17 +6,20 @@ import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.*;
 import cn.ekgc.itrip.pojo.vo.AddHotelOrderVO;
 import cn.ekgc.itrip.pojo.vo.RoomStoreVO;
+import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import cn.ekgc.itrip.pojo.vo.ValidateRoomStoreVO;
 import cn.ekgc.itrip.transport.HotelOrderTransport;
 import cn.ekgc.itrip.transport.HotelRoomTransport;
 import cn.ekgc.itrip.transport.HotelTransport;
 import cn.ekgc.itrip.transport.UserTransport;
 import cn.ekgc.itrip.util.HotelOrderNoCreatorUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +102,7 @@ public class HotelOrderController extends BaseController {
 			// 创建HotelOrder对象
 			HotelOrder hotelOrder = new HotelOrder();
 			hotelOrder.setUserId(user.getId());
+			hotelOrder.setCreatedBy(user.getId());
 			BeanUtils.copyProperties(addHotelOrderVO, hotelOrder);
 			String orderNo = HotelOrderNoCreatorUtil.createHotelOrderNo(addHotelOrderVO.getHotelId(), addHotelOrderVO.getRoomId());
 			// 订单编号
@@ -117,6 +121,10 @@ public class HotelOrderController extends BaseController {
 			HotelRoom hotelRoom = hotelRoomTransport.queryHotelRoomById(addHotelOrderVO.getRoomId());
 			hotelOrder.setPayAmount(hotelRoom.getRoomPrice() * addHotelOrderVO.getCount() * days);
 
+			// 创建时间
+			hotelOrder.setCreationDate(new Date(System.currentTimeMillis()));
+			// 订阅端
+			hotelOrder.setBookType(0);
 			// 添加联系人信息
 			List<UserLinkUser> userLinkUserList = addHotelOrderVO.getLinkUser();
 			StringBuffer sb = new StringBuffer();
@@ -160,5 +168,58 @@ public class HotelOrderController extends BaseController {
 	public ResponseDto<Object> getPersonalOrderRoomInfo(@PathVariable("orderId") Long orderId) throws Exception{
 
 		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
+	}
+
+	/**
+	 * <b>根据个人订单列表，并分页显示</b>
+	 * @param searchOrderVO
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/getpersonalorderlist")
+	public ResponseDto<Object> getPersonalOrderList(@RequestBody SearchOrderVO searchOrderVO) throws Exception{
+		HotelOrder hotelOrder = new HotelOrder();
+
+		if (searchOrderVO.getOrderStatus() == -1){
+			searchOrderVO.setOrderStatus(null);
+		}
+		if (searchOrderVO.getOrderType() == -1){
+			searchOrderVO.setOrderType(null);
+		}
+		if (searchOrderVO.getPageNo() == null){
+			searchOrderVO.setPageNo(1);
+		}
+		if ("".equals(searchOrderVO.getLinkUserName())){
+			searchOrderVO.setLinkUserName(null);
+		}
+		if ("".equals(searchOrderVO.getOrderNo())){
+			searchOrderVO.setOrderNo(null);
+		}
+
+		// 获得当前登录用户
+		String userCode = "";
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if ("user".equals(cookie.getName())){
+				userCode = cookie.getValue();
+			}
+		}
+		User userQuery = new User();
+		userQuery.setUserCode(userCode);
+		// 查询当前登录用户
+		User user = userTransport.getListByQuery(userQuery).get(0);
+		hotelOrder.setUserId(user.getId());
+		// 封装对象
+		hotelOrder.setOrderNo(searchOrderVO.getOrderNo());
+		hotelOrder.setOrderStatus(searchOrderVO.getOrderStatus());
+		hotelOrder.setPageNo(searchOrderVO.getPageNo());
+		hotelOrder.setPageSize(searchOrderVO.getPageSize());
+		hotelOrder.setCheckInDate(searchOrderVO.getStartDate());
+		hotelOrder.setCheckOutDate(searchOrderVO.getEndDate());
+		hotelOrder.setLinkUserName(searchOrderVO.getLinkUserName());
+		hotelOrder.setOrderType(searchOrderVO.getOrderType());
+
+		Page<HotelOrder> page = hotelOrderTransport.getPage(hotelOrder);
+		return ResponseDto.success(page);
 	}
 }

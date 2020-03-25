@@ -1,6 +1,8 @@
 package cn.ekgc.itrip.service;
 
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
+import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 
 import java.util.List;
 
@@ -21,4 +23,6 @@ public interface HotelOrderService {
 	HotelOrder getHotelOrderById(Long orderId) throws Exception;
 
 	HotelOrder getHotelOrderByNo(String orderNo) throws Exception;
+
+	Page<HotelOrder> getPage(HotelOrder hotelOrder) throws Exception;
 }

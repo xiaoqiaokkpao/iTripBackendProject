@@ -5,13 +5,11 @@ import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.User;
 import cn.ekgc.itrip.pojo.entity.UserLinkUser;
 import cn.ekgc.itrip.pojo.vo.AddUserLinkUserVO;
+import cn.ekgc.itrip.pojo.vo.ModifyUserLinkUserVO;
 import cn.ekgc.itrip.transport.UserLinkUserTransport;
 import cn.ekgc.itrip.transport.UserTransport;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import java.util.Date;
@@ -84,4 +82,49 @@ public class UserLinkUserController extends BaseController {
 
 		return ResponseDto.success(userLinkUserTransport.addUserLinkUser(query));
 	}
+
+	/**
+	 * <b>修改常用联系人接口</b>
+	 * @param modifyUserLinkUserVO
+	 * @return
+	 * @throws Exception
+	 */
+	@PostMapping(value = "/modifyuserlinkuser")
+	public ResponseDto<Object> modifyUserLinkUser(@RequestBody ModifyUserLinkUserVO modifyUserLinkUserVO) throws Exception{
+		// 获得当前登录用户
+		String userCode = "";
+		Cookie[] cookies = request.getCookies();
+		for (Cookie cookie : cookies) {
+			if ("user".equals(cookie.getName())){
+				userCode = cookie.getValue();
+			}
+		}
+		User userQuery = new User();
+		userQuery.setUserCode(userCode);
+		// 查询当前登录用户
+		User user = userTransport.getListByQuery(userQuery).get(0);
+
+		// 封装对象
+		UserLinkUser query = new UserLinkUser();
+		query.setId(modifyUserLinkUserVO.getId());
+		query.setUserId(user.getId().intValue());
+		query.setLinkIdCardType(modifyUserLinkUserVO.getLinkIdCardType());
+		query.setLinkIdCard(modifyUserLinkUserVO.getLinkIdCard());
+		query.setLinkPhone(modifyUserLinkUserVO.getLinkPhone());
+		query.setLinkUserName(modifyUserLinkUserVO.getLinkUserName());
+		query.setModifiedBy(user.getId());
+		query.setModifyDate(new Date(System.currentTimeMillis()));
+
+		return ResponseDto.success(userLinkUserTransport.modifyUserLinkUser(query));
+	}
+
+
+	@GetMapping(value = "/deluserlinkuser")
+	public ResponseDto<Object> delUserLinkUser(@RequestParam Integer ids) throws Exception{
+		UserLinkUser userLinkUser = new UserLinkUser();
+		userLinkUser.setId(ids.longValue());
+		userLinkUserTransport.delUserLinkUser(userLinkUser);
+		return ResponseDto.success("删除成功！");
+	}
+
 }

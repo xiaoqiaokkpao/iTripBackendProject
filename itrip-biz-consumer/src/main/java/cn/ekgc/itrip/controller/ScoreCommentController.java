@@ -117,6 +117,7 @@ public class ScoreCommentController extends BaseController {
 		if (searchCommentVO.getIsHavingImg() == -1){
 			searchCommentVO.setIsHavingImg(null);
 		}
+
 		// 进行查询
 		Page<Comment> page = scoreCommentTransport.getPage(searchCommentVO);
 		return ResponseDto.success(page);
