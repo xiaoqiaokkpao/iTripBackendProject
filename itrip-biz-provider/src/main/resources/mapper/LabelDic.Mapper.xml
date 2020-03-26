@@ -26,6 +26,19 @@
 		</where>
 	</select>
 
+	<select id="queryTravelType" parameterType="LabelDic" resultMap="labelDicMap">
+		SELECT
+			ild.name
+		FROM
+			itrip_label_dic ild
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">ild.id=#{id} and </if>
+				<if test="parentId != null">ild.parentId=#{parentId} and </if>
+			</trim>
+		</where>
+	</select>
+
 	<resultMap id="labelDicMap" type="LabelDic">
 		<id property="id" javaType="java.lang.Long" column="id"></id>
 		<result property="name" javaType="java.lang.String" column="name"></result>

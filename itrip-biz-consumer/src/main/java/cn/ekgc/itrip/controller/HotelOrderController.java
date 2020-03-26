@@ -13,7 +13,6 @@ import cn.ekgc.itrip.transport.HotelRoomTransport;
 import cn.ekgc.itrip.transport.HotelTransport;
 import cn.ekgc.itrip.transport.UserTransport;
 import cn.ekgc.itrip.util.HotelOrderNoCreatorUtil;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

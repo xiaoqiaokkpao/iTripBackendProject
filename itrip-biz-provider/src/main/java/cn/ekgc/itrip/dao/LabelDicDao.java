@@ -20,4 +20,12 @@ public interface LabelDicDao {
 	 * @throws Exception
 	 */
 	public List<LabelDic> findListByQuery(LabelDic query) throws Exception;
+
+	/**
+	 * <b>查询出游类型列表</b>
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+    List<LabelDic> queryTravelType(LabelDic query) throws Exception;
 }

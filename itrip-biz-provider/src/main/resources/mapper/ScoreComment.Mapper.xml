@@ -48,8 +48,96 @@
 				<if test="modifiedBy != null">ic.modifiedBy=#{modifiedBy} and</if>
 			</trim>
 		</where>
-
 	</select>
+
+	<select id="findCommentListByQuery" resultType="cn.ekgc.itrip.pojo.vo.ListCommentVO" parameterType="java.util.Map">
+		select
+            id AS id,
+            hotelId AS hotelId,
+            (SELECT h.hotelName FROM itrip_hotel h WHERE  id =  hotelId) AS hotelName,
+            productId AS productId,
+            (SELECT r.roomTitle FROM itrip_hotel_room r WHERE  id =  productId) AS roomTitle,
+            content AS content,
+            userId AS userId,
+            (SELECT u.userCode FROM itrip_user u WHERE  id =  userId) AS userCode,
+            isHavingImg AS isHavingImg,
+            score AS score,
+            tripMode AS tripMode,
+            (SELECT d.name FROM itrip_label_dic d WHERE  id =  tripMode) AS tripModeName,
+            orderId,
+            (SELECT o.checkInDate FROM itrip_hotel_order o WHERE  id =  orderId) AS checkInDate,
+            creationDate AS creationDate,
+            createdBy AS createdBy
+        from itrip_comment
+        <where>
+	        <trim suffixOverrides="and">
+		        <if test="id != null and id!=''">id=#{id} and </if>
+		        <if test="hotelId != null and hotelId!=''">hotelId=#{hotelId} and </if>
+		        <if test="productId != null and productId!=''">productId=#{productId} and </if>
+		        <if test="orderId != null and orderId!=''">orderId=#{orderId} and </if>
+		        <if test="productType != null and productType!=''">productType=#{productType} and </if>
+		        <if test="content != null and content!=''">content=#{content} and </if>
+		        <if test="userId != null and userId!=''">userId=#{userId} and </if>
+		        <if test="isHavingImg != null">isHavingImg=#{isHavingImg} and </if>
+		        <if test="positionScore != null and positionScore!=''">positionScore=#{positionScore} and </if>
+		        <if test="facilitiesScore != null and facilitiesScore!=''">facilitiesScore=#{facilitiesScore} and </if>
+		        <if test="serviceScore != null and serviceScore!=''">serviceScore=#{serviceScore} and </if>
+		        <if test="hygieneScore != null and hygieneScore!=''">hygieneScore=#{hygieneScore} and </if>
+		        <if test="score != null and score!=''">score=#{score} and </if>
+		        <if test="tripMode != null and tripMode!=''">tripMode=#{tripMode} and </if>
+		        <if test="isOk != null">isOk=#{isOk} and </if>
+		        <if test="creationDate != null and creationDate!=''">creationDate=#{creationDate} and </if>
+		        <if test="createdBy != null and createdBy!=''">createdBy=#{createdBy} and </if>
+		        <if test="modifyDate != null and modifyDate!=''">modifyDate=#{modifyDate} and </if>
+	        </trim>
+        </where>
+	</select>
+
+	<insert id="save" parameterType="Comment">
+		INSERT INTO itrip_comment(
+			<trim suffixOverrides=",">
+				<if test="hotelId != null ">hotelId, </if>
+				<if test="productId != null ">productId, </if>
+				<if test="orderId != null ">orderId, </if>
+				<if test="productType != null ">productType, </if>
+				<if test="content != null ">content, </if>
+				<if test="userId != null ">userId, </if>
+				<if test="isHavingImg != null ">isHavingImg, </if>
+				<if test="positionScore != null ">positionScore, </if>
+				<if test="facilitiesScore != null ">facilitiesScore, </if>
+				<if test="serviceScore != null ">serviceScore, </if>
+				<if test="hygieneScore != null ">hygieneScore, </if>
+				<if test="score != null ">score, </if>
+				<if test="tripMode != null ">tripMode, </if>
+				<if test="isOk != null ">isOk, </if>
+				<if test="creationDate != null ">creationDate, </if>
+				<if test="createdBy != null ">createdBy, </if>
+				<if test="modifyDate != null ">modifyDate, </if>
+				<if test="modifiedBy != null ">modifiedBy, </if>
+			</trim>
+		) values (
+			<trim suffixOverrides=",">
+				<if test="hotelId != null ">#{hotelId}, </if>
+				<if test="productId != null ">#{productId}, </if>
+				<if test="orderId != null ">#{orderId}, </if>
+				<if test="productType != null ">#{productType}, </if>
+				<if test="content != null ">#{content}, </if>
+				<if test="userId != null ">#{userId}, </if>
+				<if test="isHavingImg != null ">#{isHavingImg}, </if>
+				<if test="positionScore != null ">#{positionScore}, </if>
+				<if test="facilitiesScore != null ">#{facilitiesScore}, </if>
+				<if test="serviceScore != null ">#{serviceScore}, </if>
+				<if test="hygieneScore != null ">#{hygieneScore}, </if>
+				<if test="score != null ">#{score}, </if>
+				<if test="tripMode != null ">#{tripMode}, </if>
+				<if test="isOk != null ">#{isOk}, </if>
+				<if test="creationDate != null ">#{creationDate}, </if>
+				<if test="createdBy != null ">#{createdBy}, </if>
+				<if test="modifyDate != null ">#{modifyDate}, </if>
+				<if test="modifiedBy != null ">#{modifiedBy}, </if>
+			</trim>
+		)
+	</insert>
 
 	<resultMap id="commentMap" type="Comment">
 		<id property="id" javaType="java.lang.Long" column="id"/>

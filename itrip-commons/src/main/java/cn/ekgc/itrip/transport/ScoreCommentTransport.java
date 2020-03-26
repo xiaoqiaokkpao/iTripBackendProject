@@ -2,6 +2,7 @@ package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,5 +32,8 @@ public interface ScoreCommentTransport {
 	List<Comment> getScoreCommentByHotelId(@RequestParam Long hotelId)throws Exception;
 
 	@PostMapping(value = "/page")
-	Page<Comment> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception;
+	Page<ListCommentVO> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception;
+
+	@PostMapping(value = "/add")
+	boolean addComment(@RequestBody Comment comment) throws Exception;
 }

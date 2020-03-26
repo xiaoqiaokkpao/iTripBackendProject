@@ -2,6 +2,7 @@ package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
 import cn.ekgc.itrip.service.ScoreCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,13 @@ public class ScoreCommentTransportImpl implements ScoreCommentTransport{
 	}
 
 	@PostMapping(value = "/page")
-	public Page<Comment> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception{
+	public Page<ListCommentVO> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception{
 		return scoreCommentService.getPage(searchCommentVO);
+	}
+
+	@PostMapping(value = "/add")
+	public boolean addComment(@RequestBody Comment comment) throws Exception{
+		return scoreCommentService.addComment(comment);
 	}
 
 }

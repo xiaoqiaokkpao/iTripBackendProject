@@ -35,4 +35,19 @@ public class LabelDicServiceImpl implements LabelDicService {
 		}
 		return new ArrayList<LabelDic>();
 	}
+
+	/**
+	 * <b>查询出游类型列表</b>
+	 * @param query
+	 * @return
+	 * @throws Exception
+	 */
+	public List<LabelDic> queryTravelType(LabelDic query) throws Exception{
+		List<LabelDic> labelDicList = labelDicDao.queryTravelType(query);
+		String name = labelDicList.get(0).getName();
+		if (name != null){
+			return labelDicList;
+		}
+		return new ArrayList<LabelDic>();
+	}
 }

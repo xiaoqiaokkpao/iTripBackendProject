@@ -3,6 +3,7 @@ package cn.ekgc.itrip.service.impl;
 import cn.ekgc.itrip.dao.ScoreCommentDao;
 import cn.ekgc.itrip.pojo.entity.Comment;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
 import cn.ekgc.itrip.service.ScoreCommentService;
 import com.github.pagehelper.PageHelper;
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <b>爱旅行-区域字典信息业务层接口实现类</b>
@@ -50,28 +53,41 @@ public class ScoreCommentServiceImpl implements ScoreCommentService {
 	 * @return
 	 * @throws Exception
 	 */
-	public Page<Comment> getPage(SearchCommentVO searchCommentVO) throws Exception{
-		Comment query = new Comment();
-		query.setHotelId(searchCommentVO.getHotelId());
-		query.setIsHavingImg(searchCommentVO.getIsHavingImg());
-		query.setIsOk(searchCommentVO.getIsOk());
+	public Page<ListCommentVO> getPage(SearchCommentVO searchCommentVO) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hotelId", searchCommentVO.getHotelId());
+		map.put("isHavingImg", searchCommentVO.getIsHavingImg());
+		map.put("isOk", searchCommentVO.getIsOk());
+
 		// 设置分页信息
 		PageHelper.startPage(searchCommentVO.getPageNo(), searchCommentVO.getPageSize());
-		List<Comment> commentList = scoreCommentDao.findListByQuery(query);
-		// 使用PageInfo对结果进行封装
-		PageInfo<Comment> pageInfo = new PageInfo<Comment>(commentList);
-		Page<Comment> page = new Page<Comment>();
+		List<ListCommentVO> commentList = scoreCommentDao.findCommentListByQuery(map);
 
-		if (commentList != null && commentList.size() > 0){
-			page.setCurPage(pageInfo.getPageNum());
-			page.setPageSize(pageInfo.getPageSize());
-			page.setTotal((int)pageInfo.getTotal());
-			page.setRows(pageInfo.getList());
-			page.setPageCount(pageInfo.getPages());
-			page.setBeginPos(pageInfo.getStartRow());
-			return page;
-		}
-		return new Page<Comment>();
+
+		// 使用PageInfo对结果进行封装
+		PageInfo<ListCommentVO> pageInfo = new PageInfo<ListCommentVO>(commentList);
+		Page<ListCommentVO> page = new Page<ListCommentVO>();
+
+		page.setCurPage(pageInfo.getPageNum());
+		page.setPageSize(pageInfo.getPageSize());
+		page.setTotal((int)pageInfo.getTotal());
+		page.setRows(commentList);
+		page.setPageCount(pageInfo.getPages());
+		page.setBeginPos(pageInfo.getStartRow());
+		return page;
 	}
 
+	/**
+	 * <b>新增评论接口</b>
+	 * @param comment
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean addComment(Comment comment) throws Exception {
+		int count = scoreCommentDao.save(comment);
+		if (count > 0) {
+			return true;
+		}
+		return false;
+	}
 }
