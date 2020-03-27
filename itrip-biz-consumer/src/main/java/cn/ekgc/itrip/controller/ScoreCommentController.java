@@ -9,6 +9,9 @@ import cn.ekgc.itrip.transport.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import java.util.Date;
 import java.util.HashMap;
@@ -123,9 +126,11 @@ public class ScoreCommentController extends BaseController {
 		}
 
 		// 进行查询
-		Page<ListCommentVO> page = scoreCommentTransport.getPage(searchCommentVO);
+		Page<Comment> page = scoreCommentTransport.getPage(searchCommentVO);
 		// 跳转到其他地址并进行状态的修改
-		
+		/*String path = "";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+		dispatcher.forward(request, response);*/
 		return ResponseDto.success(page);
 	}
 

@@ -1,6 +1,8 @@
 package cn.ekgc.itrip.dao;
 
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
+import cn.ekgc.itrip.pojo.vo.ItripPersonalOrderRoomVO;
+import feign.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,6 +31,8 @@ public interface HotelOrderDao {
 	 * @throws Exception
 	 */
 	List<HotelOrder> findHotelOrderListByQuery(HotelOrder query) throws Exception;
+
+	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(@Param(value = "id") Long id) throws Exception;
 
 	/**
 	 * <b>保存订单信息</b>

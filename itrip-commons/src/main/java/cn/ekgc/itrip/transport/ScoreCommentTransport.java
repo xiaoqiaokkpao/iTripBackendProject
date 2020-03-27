@@ -32,7 +32,7 @@ public interface ScoreCommentTransport {
 	List<Comment> getScoreCommentByHotelId(@RequestParam Long hotelId)throws Exception;
 
 	@PostMapping(value = "/page")
-	Page<ListCommentVO> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception;
+	Page<Comment> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception;
 
 	@PostMapping(value = "/add")
 	boolean addComment(@RequestBody Comment comment) throws Exception;

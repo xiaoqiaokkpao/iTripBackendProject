@@ -35,7 +35,7 @@ public class ScoreCommentTransportImpl implements ScoreCommentTransport{
 	}
 
 	@PostMapping(value = "/page")
-	public Page<ListCommentVO> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception{
+	public Page<Comment> getPage(@RequestBody SearchCommentVO searchCommentVO)throws Exception{
 		return scoreCommentService.getPage(searchCommentVO);
 	}
 

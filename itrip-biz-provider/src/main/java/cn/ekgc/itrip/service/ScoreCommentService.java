@@ -24,7 +24,7 @@ public interface ScoreCommentService {
 	 */
 	List<Comment> getListByQuery(Long hotelId) throws Exception;
 
-	Page<ListCommentVO> getPage(SearchCommentVO searchCommentVO) throws Exception;
+	Page<Comment> getPage(SearchCommentVO searchCommentVO) throws Exception;
 
 	boolean addComment(Comment comment) throws Exception;
 }

@@ -4,10 +4,7 @@ import cn.ekgc.itrip.base.controller.BaseController;
 import cn.ekgc.itrip.base.enums.OrderStatusEnum;
 import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.*;
-import cn.ekgc.itrip.pojo.vo.AddHotelOrderVO;
-import cn.ekgc.itrip.pojo.vo.RoomStoreVO;
-import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
-import cn.ekgc.itrip.pojo.vo.ValidateRoomStoreVO;
+import cn.ekgc.itrip.pojo.vo.*;
 import cn.ekgc.itrip.transport.HotelOrderTransport;
 import cn.ekgc.itrip.transport.HotelRoomTransport;
 import cn.ekgc.itrip.transport.HotelTransport;
@@ -116,8 +113,14 @@ public class HotelOrderController extends BaseController {
 			Long day3 = (day2 - day1) / (1000 * 3600 *24);
 			Integer days = (Integer.parseInt(String.valueOf(day3)));
 			hotelOrder.setBookingDays(days);
+
 			// 支付金额
 			HotelRoom hotelRoom = hotelRoomTransport.queryHotelRoomById(addHotelOrderVO.getRoomId());
+			/*// 房间Id
+			hotelOrder.setRoomId(hotelRoom.getId());
+			// 房间名称
+			hotelRoom.setRoomTitle(hotelRoom.getRoomTitle());*/
+			// 支付总价格
 			hotelOrder.setPayAmount(hotelRoom.getRoomPrice() * addHotelOrderVO.getCount() * days);
 
 			// 创建时间
@@ -165,8 +168,9 @@ public class HotelOrderController extends BaseController {
 
 	@GetMapping(value = "/getpersonalorderroominfo/{orderId}")
 	public ResponseDto<Object> getPersonalOrderRoomInfo(@PathVariable("orderId") Long orderId) throws Exception{
+		ItripPersonalOrderRoomVO vo = hotelOrderTransport.getItripHotelOrderRoomInfoById(orderId);
 
-		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
+		return ResponseDto.success(vo);
 	}
 
 	/**

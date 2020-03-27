@@ -2,6 +2,7 @@ package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ItripPersonalOrderRoomVO;
 import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import cn.ekgc.itrip.service.HotelOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class HotelOrderTransportImpl implements HotelOrderTransport {
 	@PostMapping(value = "/id")
 	public HotelOrder getHotelOrderById(@RequestParam Long orderId) throws Exception{
 		return hotelOrderService.getHotelOrderById(orderId);
+	}
+
+	@PostMapping(value = "/orderId")
+	public ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception{
+		return hotelOrderService.getItripHotelOrderRoomInfoById(orderId);
 	}
 
 	@PostMapping(value = "/no")

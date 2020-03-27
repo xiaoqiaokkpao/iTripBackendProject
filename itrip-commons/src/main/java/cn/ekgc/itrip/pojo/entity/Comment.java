@@ -24,6 +24,11 @@ public class Comment implements Serializable {
 	private Long createdBy;
 	private Date modifyDate;
 	private Long modifiedBy;
+	private String userCode;        //发表评论的用户的姓名
+	private Integer hotelLevel;     //酒店的星级
+	private Date checkInDate;       //入住时间
+	private String roomTitle;       //房型名称
+	private String tripModeName;    //出游类型中文名称
 
 	public Long getId() {
 		return id;
@@ -175,5 +180,45 @@ public class Comment implements Serializable {
 
 	public void setModifiedBy(Long modifiedBy) {
 		this.modifiedBy = modifiedBy;
+	}
+
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
+	}
+
+	public Integer getHotelLevel() {
+		return hotelLevel;
+	}
+
+	public void setHotelLevel(Integer hotelLevel) {
+		this.hotelLevel = hotelLevel;
+	}
+
+	public Date getCheckInDate() {
+		return checkInDate;
+	}
+
+	public void setCheckInDate(Date checkInDate) {
+		this.checkInDate = checkInDate;
+	}
+
+	public String getRoomTitle() {
+		return roomTitle;
+	}
+
+	public void setRoomTitle(String roomTitle) {
+		this.roomTitle = roomTitle;
+	}
+
+	public String getTripModeName() {
+		return tripModeName;
+	}
+
+	public void setTripModeName(String tripModeName) {
+		this.tripModeName = tripModeName;
 	}
 }

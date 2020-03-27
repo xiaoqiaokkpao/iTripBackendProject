@@ -2,6 +2,7 @@ package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ItripPersonalOrderRoomVO;
 import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,6 +32,9 @@ public interface HotelOrderTransport {
 
 	@PostMapping(value = "/id")
 	HotelOrder getHotelOrderById(@RequestParam Long orderId) throws Exception;
+
+	@PostMapping(value = "/orderId")
+	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception;
 
 	@PostMapping(value = "/no")
 	HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception;

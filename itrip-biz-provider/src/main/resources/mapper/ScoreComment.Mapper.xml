@@ -47,6 +47,7 @@
 				<if test="modifyDate != null">ic.modifyDate=#{modifyDate} and</if>
 				<if test="modifiedBy != null">ic.modifiedBy=#{modifiedBy} and</if>
 			</trim>
+			order by creationDate desc
 		</where>
 	</select>
 
@@ -73,6 +74,7 @@
 	        <trim suffixOverrides="and">
 		        <if test="id != null and id!=''">id=#{id} and </if>
 		        <if test="hotelId != null and hotelId!=''">hotelId=#{hotelId} and </if>
+		        <if test="roomTitle != null ">roomTitle=#{roomTitle} and </if>
 		        <if test="productId != null and productId!=''">productId=#{productId} and </if>
 		        <if test="orderId != null and orderId!=''">orderId=#{orderId} and </if>
 		        <if test="productType != null and productType!=''">productType=#{productType} and </if>
@@ -90,6 +92,7 @@
 		        <if test="createdBy != null and createdBy!=''">createdBy=#{createdBy} and </if>
 		        <if test="modifyDate != null and modifyDate!=''">modifyDate=#{modifyDate} and </if>
 	        </trim>
+	        order by creationDate desc
         </where>
 	</select>
 

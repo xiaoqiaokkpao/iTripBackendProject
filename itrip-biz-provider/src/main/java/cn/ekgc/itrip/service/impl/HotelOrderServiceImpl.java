@@ -3,6 +3,7 @@ package cn.ekgc.itrip.service.impl;
 import cn.ekgc.itrip.dao.HotelOrderDao;
 import cn.ekgc.itrip.pojo.entity.HotelOrder;
 import cn.ekgc.itrip.pojo.entity.Page;
+import cn.ekgc.itrip.pojo.vo.ItripPersonalOrderRoomVO;
 import cn.ekgc.itrip.pojo.vo.SearchOrderVO;
 import cn.ekgc.itrip.service.HotelOrderService;
 import com.github.pagehelper.PageHelper;
@@ -52,13 +53,27 @@ public class HotelOrderServiceImpl implements HotelOrderService {
 
 	public HotelOrder getHotelOrderById(Long orderId) throws Exception{
 		HotelOrder query = new HotelOrder();
-		query.setId(orderId);
-
-		List<HotelOrder> hotelOrderList = hotelOrderDao.findHotelOrderListByQuery(query);
-		if (hotelOrderList != null && hotelOrderList.size() > 0){
-			return hotelOrderList.get(0);
+		query.setOrderNo(orderId.toString());
+		HotelOrder hotelOrder = hotelOrderDao.findHotelOrderListByQuery(query).get(0);
+		if (hotelOrder != null){
+			return hotelOrder;
 		}
 		return new HotelOrder();
+	}
+
+	/**
+	 * <b> 根据订单ID查看个人订单详情-房型相关信息</b>
+	 * @param orderId
+	 * @return
+	 * @throws Exception
+	 */
+	public ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception{
+
+		ItripPersonalOrderRoomVO itripPersonalOrderRoomVO = hotelOrderDao.getItripHotelOrderRoomInfoById(orderId);
+		if (itripPersonalOrderRoomVO != null){
+			return itripPersonalOrderRoomVO;
+		}
+		return new ItripPersonalOrderRoomVO();
 	}
 
 	public HotelOrder getHotelOrderByNo(String orderNo) throws Exception{
