@@ -42,10 +42,10 @@ public class HotelOrderTransportImpl implements HotelOrderTransport {
 		return hotelOrderService.getHotelOrderById(orderId);
 	}
 
-	@PostMapping(value = "/orderId")
+	/*@PostMapping(value = "/orderId")
 	public ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception{
 		return hotelOrderService.getItripHotelOrderRoomInfoById(orderId);
-	}
+	}*/
 
 	@PostMapping(value = "/no")
 	public HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception{

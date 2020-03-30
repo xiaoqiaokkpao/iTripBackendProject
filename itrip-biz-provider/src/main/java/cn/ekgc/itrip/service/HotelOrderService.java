@@ -23,7 +23,7 @@ public interface HotelOrderService {
 
 	HotelOrder getHotelOrderById(Long orderId) throws Exception;
 
-	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception;
+	// ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception;
 
 	HotelOrder getHotelOrderByNo(String orderNo) throws Exception;
 

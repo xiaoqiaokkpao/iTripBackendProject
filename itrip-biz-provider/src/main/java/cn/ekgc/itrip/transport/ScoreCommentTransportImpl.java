@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.transport;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
+import cn.ekgc.itrip.pojo.entity.ItripImage;
 import cn.ekgc.itrip.pojo.entity.Page;
 import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
@@ -42,6 +43,11 @@ public class ScoreCommentTransportImpl implements ScoreCommentTransport{
 	@PostMapping(value = "/add")
 	public boolean addComment(@RequestBody Comment comment) throws Exception{
 		return scoreCommentService.addComment(comment);
+	}
+
+	@PostMapping(value = "/addimg")
+	public boolean addImage( List<ItripImage> itripImageList) throws Exception{
+		return scoreCommentService.addImage(itripImageList);
 	}
 
 }

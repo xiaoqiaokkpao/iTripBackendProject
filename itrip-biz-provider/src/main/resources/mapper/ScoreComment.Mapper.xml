@@ -142,6 +142,32 @@
 		)
 	</insert>
 
+	<insert id="saveImage" parameterType="ItripImage">
+		INSERT INTO itrip_image(
+			<trim suffixOverrides=",">
+				<if test="type != null ">type, </if>
+				<if test="targetId != null ">targetId, </if>
+				<if test="position != null ">position, </if>
+				<if test="imgUrl != null ">imgUrl, </if>
+				<if test="creationDate != null ">creationDate, </if>
+				<if test="createdBy != null ">createdBy, </if>
+				<if test="modifyDate != null ">modifyDate, </if>
+				<if test="modifiedBy != null ">modifiedBy, </if>
+			</trim>
+		)values(
+			<trim suffixOverrides=",">
+				<if test="type != null ">#{type}, </if>
+				<if test="targetId != null ">#{targetId}, </if>
+				<if test="position != null ">#{position}, </if>
+				<if test="imgUrl != null ">#{imgUrl}, </if>
+				<if test="creationDate != null ">#{creationDate}, </if>
+				<if test="createdBy != null ">#{createdBy}, </if>
+				<if test="modifyDate != null ">#{modifyDate}, </if>
+				<if test="modifiedBy != null ">#{modifiedBy}, </if>
+			</trim>
+		)
+	</insert>
+
 	<resultMap id="commentMap" type="Comment">
 		<id property="id" javaType="java.lang.Long" column="id"/>
 		<result property="hotelId" javaType="java.lang.Long" column="hotelId"/>

@@ -6,17 +6,17 @@ import cn.ekgc.itrip.base.pojo.vo.ResponseDto;
 import cn.ekgc.itrip.pojo.entity.*;
 import cn.ekgc.itrip.pojo.vo.*;
 import cn.ekgc.itrip.transport.*;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.*;
 
 
 /**
@@ -212,8 +212,61 @@ public class ScoreCommentController extends BaseController {
 		comment.setCreatedBy(user.getId());
 		comment.setScore((addCommentVO.getFacilitiesScore() + addCommentVO.getServiceScore() + addCommentVO.getPositionScore() + addCommentVO.getHygieneScore()) / 4);
 
+
+		List<ItripImage> itripImageList = new ArrayList<ItripImage>();
+		if (addCommentVO.getIsHavingImg() == 1){
+			int i = 1;
+			for (ItripImage itripImage : addCommentVO.getItripImages()) {
+				itripImage.setType(String.valueOf(ImageTypeEnum.IMAGE_TYPE_COMMENT.getCode()));
+				itripImage.setCreatedBy(user.getId());
+				itripImage.setCreationDate(new Date(System.currentTimeMillis()));
+				itripImage.setPosition(i);
+				itripImageList.add(itripImage);
+				i++;
+			}
+		}
+
 		scoreCommentTransport.addComment(comment);
+		scoreCommentTransport.addImage(itripImageList);
 		return ResponseDto.success("评论成功！！！");
+	}
+
+	@PostMapping(value = "/upload")
+	public ResponseDto<Object> upload(@RequestPart("file") MultipartFile multipartFile) throws Exception{
+		// 获取文件名
+		String realName = multipartFile.getOriginalFilename();
+		System.out.println(realName);
+		// 重命名时，最重要的就是文件的扩展名不能发生变化
+		String suffix = realName.substring(realName.lastIndexOf("."), realName.length());
+		System.out.println(suffix);
+		// 形成新的文件名
+		String fileName = System.currentTimeMillis() + suffix;
+		System.out.println(fileName);
+
+		// 通过MultipartFile获得文件的输入流对象
+		InputStream is = multipartFile.getInputStream();
+		// 获得了上传所提供的文件流之后，就可以读取输入流中的数据，写入到对应的输出流中
+		// 设定文件保存路径
+		String path = "E:/myProjects/upload";
+		// 根据文件夹获得对应文件对象
+		File upLoadFolder = new File(path);
+		if (!upLoadFolder.exists()){
+			// 新建文件夹
+			upLoadFolder.mkdirs();
+		}
+
+		// 根据文件在服务器上的上传路径和文件名，获得目标文件File对象
+		File upLoadFile = new File(path + File.separator + fileName);
+		// 创建输出流对象
+		OutputStream os = new FileOutputStream(upLoadFile);
+		IOUtils.copy(is, os);
+
+		ItripImageVO itripImageVO = new ItripImageVO();
+		itripImageVO.setImgUrl(upLoadFile.getAbsolutePath());
+
+		is.close();
+		os.close();
+		return ResponseDto.success(itripImageVO);
 	}
 
 }

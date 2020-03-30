@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.dao;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
+import cn.ekgc.itrip.pojo.entity.ItripImage;
 import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import org.springframework.stereotype.Repository;
 
@@ -39,4 +40,11 @@ public interface ScoreCommentDao {
 	 */
 	List<ListCommentVO> findCommentListByQuery(Map<String, Object> querymap)throws Exception;
 
+	/**
+	 * <b>添加评论图片</b>
+	 * @param itripImage
+	 * @return
+	 * @throws Exception
+	 */
+	int saveImage(ItripImage itripImage) throws Exception;
 }

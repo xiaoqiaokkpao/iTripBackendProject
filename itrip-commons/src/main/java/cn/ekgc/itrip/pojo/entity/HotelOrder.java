@@ -42,6 +42,15 @@ public class HotelOrder implements Serializable {
 	private Date modifyDate;
 	private Long modifiedBy;
 	private Integer bookType;
+	private Integer hotelLevel;         //酒店星级
+	private String address;             //酒店位置
+	private String roomTitle;           //房型名称
+	private Long roomBedTypeId;         //床型
+	private Integer roomPayType;
+	private Integer isHavingBreakfast;
+	private String roomBedTypeName;
+	private Integer checkInWeek;
+	private Integer checkOutWeek;
 
 	public Long getId() {
 		return id;
@@ -281,5 +290,77 @@ public class HotelOrder implements Serializable {
 
 	public void setBookType(Integer bookType) {
 		this.bookType = bookType;
+	}
+
+	public Integer getHotelLevel() {
+		return hotelLevel;
+	}
+
+	public void setHotelLevel(Integer hotelLevel) {
+		this.hotelLevel = hotelLevel;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getRoomTitle() {
+		return roomTitle;
+	}
+
+	public void setRoomTitle(String roomTitle) {
+		this.roomTitle = roomTitle;
+	}
+
+	public Long getRoomBedTypeId() {
+		return roomBedTypeId;
+	}
+
+	public void setRoomBedTypeId(Long roomBedTypeId) {
+		this.roomBedTypeId = roomBedTypeId;
+	}
+
+	public Integer getRoomPayType() {
+		return roomPayType;
+	}
+
+	public void setRoomPayType(Integer roomPayType) {
+		this.roomPayType = roomPayType;
+	}
+
+	public Integer getIsHavingBreakfast() {
+		return isHavingBreakfast;
+	}
+
+	public void setIsHavingBreakfast(Integer isHavingBreakfast) {
+		this.isHavingBreakfast = isHavingBreakfast;
+	}
+
+	public String getRoomBedTypeName() {
+		return roomBedTypeName;
+	}
+
+	public void setRoomBedTypeName(String roomBedTypeName) {
+		this.roomBedTypeName = roomBedTypeName;
+	}
+
+	public Integer getCheckInWeek() {
+		return checkInWeek;
+	}
+
+	public void setCheckInWeek(Integer checkInWeek) {
+		this.checkInWeek = checkInWeek;
+	}
+
+	public Integer getCheckOutWeek() {
+		return checkOutWeek;
+	}
+
+	public void setCheckOutWeek(Integer checkOutWeek) {
+		this.checkOutWeek = checkOutWeek;
 	}
 }

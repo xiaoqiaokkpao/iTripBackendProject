@@ -33,8 +33,8 @@ public interface HotelOrderTransport {
 	@PostMapping(value = "/id")
 	HotelOrder getHotelOrderById(@RequestParam Long orderId) throws Exception;
 
-	@PostMapping(value = "/orderId")
-	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception;
+	/*@PostMapping(value = "/orderId")
+	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(Long orderId) throws Exception;*/
 
 	@PostMapping(value = "/no")
 	HotelOrder getHotelOrderByNo(@RequestParam String orderNo) throws Exception;

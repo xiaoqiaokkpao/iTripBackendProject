@@ -168,9 +168,8 @@ public class HotelOrderController extends BaseController {
 
 	@GetMapping(value = "/getpersonalorderroominfo/{orderId}")
 	public ResponseDto<Object> getPersonalOrderRoomInfo(@PathVariable("orderId") Long orderId) throws Exception{
-		ItripPersonalOrderRoomVO vo = hotelOrderTransport.getItripHotelOrderRoomInfoById(orderId);
 
-		return ResponseDto.success(vo);
+		return ResponseDto.success(hotelOrderTransport.getHotelOrderById(orderId));
 	}
 
 	/**

@@ -32,7 +32,7 @@ public interface HotelOrderDao {
 	 */
 	List<HotelOrder> findHotelOrderListByQuery(HotelOrder query) throws Exception;
 
-	ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(@Param(value = "id") Long id) throws Exception;
+	// ItripPersonalOrderRoomVO getItripHotelOrderRoomInfoById(@Param(value = "id") Long id) throws Exception;
 
 	/**
 	 * <b>保存订单信息</b>

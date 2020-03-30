@@ -1,5 +1,8 @@
 package cn.ekgc.itrip.pojo.entity;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,22 +12,38 @@ import java.util.Date;
  * @version 1.0.0
  * @since 1.0.0
  */
+@ApiModel("用户实体信息")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
+	@ApiModelProperty(value = "用户主键")
 	private Long id;
+	@ApiModelProperty(value = "用户账号")
 	private String userCode;
+	@ApiModelProperty(value = "用户密码")
 	private String userPassword;
+	@ApiModelProperty(value = "用户类型")
 	private Integer userType;
+	@ApiModelProperty(value = "平台ID")
 	private Long flatID;
+	@ApiModelProperty(value = "用户姓名")
 	private String userName;
+	@ApiModelProperty(value = "微信")
 	private String weChat;
+	@ApiModelProperty(value = "QQ")
 	private String QQ;
+	@ApiModelProperty(value = "weibo")
 	private String weibo;
+	@ApiModelProperty(value = "baidu", required = false)
 	private String baidu;
+	@ApiModelProperty(value = "是否激活")
 	private int activated;
+	@ApiModelProperty(value = "创建时间")
 	private Date creationDate;
+	@ApiModelProperty(value = "创建者")
 	private Long createdBy;
+	@ApiModelProperty(value = "修改时间")
 	private Date modifyDate;
+	@ApiModelProperty(value = "修改者")
 	private Long modifiedBy;
 
 	public Long getId() {

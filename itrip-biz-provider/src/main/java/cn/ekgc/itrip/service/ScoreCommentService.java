@@ -1,6 +1,7 @@
 package cn.ekgc.itrip.service;
 
 import cn.ekgc.itrip.pojo.entity.Comment;
+import cn.ekgc.itrip.pojo.entity.ItripImage;
 import cn.ekgc.itrip.pojo.entity.Page;
 import cn.ekgc.itrip.pojo.vo.ListCommentVO;
 import cn.ekgc.itrip.pojo.vo.SearchCommentVO;
@@ -27,4 +28,6 @@ public interface ScoreCommentService {
 	Page<Comment> getPage(SearchCommentVO searchCommentVO) throws Exception;
 
 	boolean addComment(Comment comment) throws Exception;
+
+	boolean addImage(List<ItripImage> itripImageList) throws Exception;
 }

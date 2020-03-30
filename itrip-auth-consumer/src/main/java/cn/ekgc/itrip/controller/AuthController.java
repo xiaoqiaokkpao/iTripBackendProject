@@ -10,6 +10,7 @@ import cn.ekgc.itrip.transport.UserTransport;
 import cn.ekgc.itrip.util.JWTUtil;
 import cn.ekgc.itrip.util.MD5Util;
 import cn.ekgc.itrip.util.RegValidationUtil;
+import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ import java.util.List;
  * @version 1.0.0
  * @since 1.0.0
  */
-
+@Api(value = "用户信息交互接口", tags = "用户信息交互接口")
 @RestController("authController")
 @RequestMapping("/auth/api")
 public class AuthController extends BaseController {
@@ -35,6 +36,13 @@ public class AuthController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
+	@ApiOperation(value = "用户注册验证-电子邮箱", produces = "application/json", httpMethod = "get")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "User", value = "实体对象")
+	})
+	@ApiResponses({
+			@ApiResponse(code = 200, message = "响应成功，返回列表")
+	})
 	@GetMapping(value = "/ckusr")
 	public ResponseDto<Object> checkUserEmailForRegistry(String name) throws Exception{
 		// 校验用户所提交的电子邮件是否有效（是否为空，以及是否符合邮箱的格式）

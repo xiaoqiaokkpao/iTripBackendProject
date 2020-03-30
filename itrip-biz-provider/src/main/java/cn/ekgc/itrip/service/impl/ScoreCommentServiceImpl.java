@@ -148,4 +148,21 @@ public class ScoreCommentServiceImpl implements ScoreCommentService {
 		}
 		return false;
 	}
+
+	/**
+	 * <b>添加评论图片</b>
+	 * @param itripImageList
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean addImage(List<ItripImage> itripImageList) throws Exception{
+		for (ItripImage itripImage : itripImageList){
+			int count = scoreCommentDao.saveImage(itripImage);
+			if (count > 0){
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 }

@@ -24,6 +24,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<!-- 引入Swagger相关依赖关系：springfox-swagger2，以及用于生成页面：springforx-swagger-ui -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.9.2</version>
+		</dependency>
+		<!-- 引入Swagger相关依赖关系：springfox-swagger2，以及用于生成页面：springforx-swagger-ui -->
+
 	</dependencies>
 	<!-- 配置 Spring Boot Web 的依赖关系[begin] -->
 

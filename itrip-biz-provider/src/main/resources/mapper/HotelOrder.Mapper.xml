@@ -82,37 +82,6 @@
 		</where>
 	</select>
 
-	<select id="getItripHotelOrderRoomInfoById" resultType="cn.ekgc.itrip.pojo.vo.ItripPersonalOrderRoomVO" >
-		select
-			o.id AS id,
-			o.hotelId AS hotelId,
-			o.hotelName AS hotelName,
-			h.hotelLevel AS hotelLevel,
-			h.address AS address,
-			o.roomId AS roomId,
-			r.roomTitle AS roomTitle,
-			r.roomBedTypeId AS roomBedTypeId,
-			o.count AS count,
-			o.bookingDays AS bookingDays,
-			o.checkInDate AS checkInDate,
-			o.checkOutDate AS checkOutDate,
-			o.specialRequirement AS specialRequirement,
-			o.linkUserName AS linkUserName,
-			o.payAmount AS payAmount,
-			r.payType AS roomPayType,
-			d.name as roomBedTypeName,
-			r.isHavingBreakfast as isHavingBreakfast,
-			dayofweek(o.checkInDate) as checkInWeek,
-			dayofweek(o.checkOutDate) as checkOutWeek
-		from itrip_hotel_order o,itrip_hotel h,itrip_hotel_room r,itrip_label_dic d
-		<where>
-			<trim suffixOverrides="and">
-				o.hotelId=h.id and o.roomId=r.id and d.id=r.roomBedTypeId
-				<if test="id != null">o.id=#{id} and </if>
-			</trim>
-		</where>
-	</select>
-
 	<insert id="save" parameterType="HotelOrder">
 		INSERT INTO itrip_hotel_order(
 			<trim suffixOverrides=",">
